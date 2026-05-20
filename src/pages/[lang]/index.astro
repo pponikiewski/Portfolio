@@ -1,0 +1,14 @@
+---
+import PortfolioPage from '@/components/PortfolioPage.astro'
+import { content, languages, type Lang } from '@/i18n/content'
+import '@/styles/global.css'
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }))
+}
+
+const lang = Astro.params.lang as Lang
+const page = content[lang] ?? content.pl
+---
+
+<PortfolioPage lang={lang} page={page} />
