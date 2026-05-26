@@ -10,7 +10,11 @@
       "PowerShell($job = Start-Job { Set-Location D:/Projects/Portfolio; npx astro dev --host 127.0.0.1 --port 4321 }; Start-Sleep 8; try { \\(Invoke-WebRequest -Uri \"http://127.0.0.1:4321\" -UseBasicParsing -TimeoutSec 5\\).StatusCode } catch { \"not ready: $_\" })",
       "mcp__plugin_context-mode_context-mode__ctx_execute",
       "PowerShell(Get-Process *)",
-      "PowerShell(\\(Invoke-WebRequest -Uri \"http://127.0.0.1:4321/pl/\" -UseBasicParsing\\).Content | Select-String -Pattern \"Fraunces|Outfit|placeholder-lines|fonts\\\\.googleapis\" -AllMatches | ForEach-Object { $_.Matches } | Group-Object Value | Select-Object Count, Name)"
+      "PowerShell(\\(Invoke-WebRequest -Uri \"http://127.0.0.1:4321/pl/\" -UseBasicParsing\\).Content | Select-String -Pattern \"Fraunces|Outfit|placeholder-lines|fonts\\\\.googleapis\" -AllMatches | ForEach-Object { $_.Matches } | Group-Object Value | Select-Object Count, Name)",
+      "Bash(rtk ls *)",
+      "Bash(rtk curl *)",
+      "Bash(rtk wc *)",
+      "Bash(rtk grep *)"
     ]
   }
 }
