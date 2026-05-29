@@ -14,7 +14,14 @@
       "Bash(rtk ls *)",
       "Bash(rtk curl *)",
       "Bash(rtk wc *)",
-      "Bash(rtk grep *)"
+      "Bash(rtk grep *)",
+      "Bash(rtk git *)",
+      "Bash(bash \"C:\\\\Users\\\\sitka\\\\.claude\\\\plugins\\\\cache\\\\claude-plugins-official\\\\superpowers\\\\5.1.0\\\\skills\\\\brainstorming\\\\scripts\\\\start-server.sh\" --project-dir \"D:\\\\Projects\\\\Portfolio\")",
+      "Bash(rtk read *)",
+      "WebSearch",
+      "WebFetch(domain:shadcn-map.vercel.app)",
+      "WebFetch(domain:www.mapcn.dev)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
