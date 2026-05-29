@@ -1,6 +1,7 @@
 ---
 import { ArrowUpRight, Download } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
+import { HeroMap } from './HeroMap'
 import type { Lang, PageContent } from '@/i18n/content'
 
 interface Props {
@@ -14,7 +15,6 @@ const profilePath = '/images/profile.webp'
 
 const [firstName, ...restName] = page.hero.name.split(' ')
 const lastName = restName.join(' ')
-const projectCount = String(page.projects.length).padStart(2, '0')
 ---
 
 <!doctype html>
@@ -58,35 +58,35 @@ const projectCount = String(page.projects.length).padStart(2, '0')
 
     <div class="page">
       <div class="vmid"></div>
+      <span class="bp-coord bp-coord-tl">0,0</span>
+      <span class="bp-coord bp-coord-br">grid · 4col · 1120</span>
+      <span class="bp-plus bp-plus-1">+</span>
+      <span class="bp-plus bp-plus-2">+</span>
+      <span class="bp-plus bp-plus-3">+</span>
       <div class="inner">
 
         <!-- HERO -->
         <section class="hero" style="border-bottom: 0;">
-          <div class="hero-status">
-            <span class="pulse"></span>
-            <span class="label">{page.hero.status}</span>
+          <div class="hero-map" aria-hidden="true">
+            <HeroMap client:only="react" />
           </div>
-          <h1>{firstName}<br /><span class="light">{lastName}</span></h1>
-          <p class="hero-sub">{page.hero.lead}</p>
-          <div class="hero-type mono">
-            <span class="lbl">~ currently: </span><span id="typed-text"></span><span class="cursor"></span>
-          </div>
-          <div class="hero-cta">
-            <a class="btn primary" href="#projects">{page.hero.primaryCta}</a>
-            <a class="btn ghost" href={`mailto:${page.contact.email}`}>{page.hero.secondaryCta}</a>
-          </div>
-          <div class="hero-meta">
-            <div class="meta-cell">
-              <div class="l">{page.nav.about}</div>
-              <div class="v">{page.hero.handle}</div>
+          <div class="hero-content">
+            <div class="hero-status">
+              <span class="kick-slash">//</span>
+              <span class="pulse"></span>
+              <span class="label">{page.hero.status}</span>
             </div>
-            <div class="meta-cell">
-              <div class="l">{page.nav.projects}</div>
-              <div class="v">{projectCount}</div>
+            <h1>{firstName}<br /><span class="light">{lastName}</span></h1>
+            <p class="hero-sub">{page.hero.lead}</p>
+            <div class="hero-type mono">
+              <span class="lbl">~ currently: </span><span id="typed-text"></span><span class="cursor"></span>
             </div>
-            <div class="meta-cell">
-              <div class="l">Location</div>
-              <div class="v">{page.hero.location}</div>
+            <div class="hero-cta">
+              <a class="btn primary" href="#projects">{page.hero.primaryCta}</a>
+              <a class="btn ghost" href={`mailto:${page.contact.email}`}>{page.hero.secondaryCta}</a>
+            </div>
+            <div class="hero-loc mono">
+              based in <span class="dot-inline"></span> {page.hero.location}
             </div>
           </div>
         </section>
@@ -186,14 +186,14 @@ const projectCount = String(page.projects.length).padStart(2, '0')
             <span class="cv">{page.contact.email}</span>
             <span class="ca">↗</span>
           </a>
-          <a class="contact-row" href="https://www.linkedin.com/in/piotr-ponikiewski-580679232/" target="_blank" rel="noreferrer">
+          <a class="contact-row" href={page.contact.linkedinHref} target="_blank" rel="noreferrer">
             <span class="ck">{page.contact.linkedin}</span>
-            <span class="cv">in/piotr-ponikiewski</span>
+            <span class="cv">{page.contact.linkedinLabel}</span>
             <span class="ca">↗</span>
           </a>
-          <a class="contact-row" href="https://github.com/pponikiewski" target="_blank" rel="noreferrer">
+          <a class="contact-row" href={page.contact.githubHref} target="_blank" rel="noreferrer">
             <span class="ck">{page.contact.github}</span>
-            <span class="cv">github.com/pponikiewski</span>
+            <span class="cv">{page.contact.githubLabel}</span>
             <span class="ca">↗</span>
           </a>
           <a class="contact-row" href={cvPath} download>

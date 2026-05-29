@@ -13,7 +13,11 @@
   --line-strong: #15140f;
   --accent: #ff4d2e;    /* czerwony akcent */
   --accent-soft: rgba(255, 77, 46, 0.5);
+  --online: #22c55e;    /* zielony = online */
+  --online-soft: rgba(34, 197, 94, 0.5);
   --hover: #f2f0ea;
+  --page-max: 1120px;
+  --page-pad: clamp(20px, 4vw, 56px);
 }
 
 :root[data-theme='dark'] {
@@ -25,6 +29,8 @@
   --line-strong: #4a4a4f;
   --accent: #ff5a3c;
   --accent-soft: rgba(255, 90, 60, 0.5);
+  --online: #2ee06a;
+  --online-soft: rgba(46, 224, 106, 0.5);
   --hover: #202024;
 }
 
@@ -66,7 +72,7 @@ a {
 
 /* ============ PAGE + GRID LINES ============ */
 .page {
-  max-width: 940px;
+  max-width: var(--page-max);
   margin: 0 auto;
   position: relative;
 }
@@ -98,7 +104,7 @@ a {
 .inner {
   position: relative;
   z-index: 1;
-  padding: 0 28px;
+  padding: 0 var(--page-pad);
 }
 
 /* ============ TOPBAR ============ */
@@ -112,9 +118,9 @@ a {
 }
 
 .topbar-in {
-  max-width: 940px;
+  max-width: var(--page-max);
   margin: 0 auto;
-  padding: 14px 28px;
+  padding: 14px var(--page-pad);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,7 +140,8 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--online);
+  animation: pulse 2.2s infinite;
 }
 
 .nav {
@@ -233,10 +240,104 @@ section {
   font-weight: 500;
 }
 
+/* ============ BLUEPRINT MARKS ============ */
+.bp-coord {
+  position: absolute;
+  z-index: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.bp-coord-tl { top: 8px; left: 6px; }
+.bp-coord-br { bottom: 8px; right: 6px; }
+
+.bp-plus {
+  position: absolute;
+  z-index: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bp-plus-1 { top: 200px; left: 25%; }
+.bp-plus-2 { top: 200px; left: 75%; }
+.bp-plus-3 { top: 440px; left: 50%; }
+
 /* ============ HERO ============ */
 .hero {
+  position: relative;
   padding: 70px 0 60px;
   animation: fade-up 0.6s ease-out both;
+}
+
+.hero-map {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  bottom: -40px;
+  width: 68%;
+  z-index: 0;
+  opacity: 0.78;
+  -webkit-mask-image:
+    radial-gradient(115% 95% at 78% 42%, #000 18%, rgba(0, 0, 0, 0.55) 48%, transparent 75%);
+  mask-image:
+    radial-gradient(115% 95% at 78% 42%, #000 18%, rgba(0, 0, 0, 0.55) 48%, transparent 75%);
+}
+
+/* tint layer: bleed page bg over map so basemap color melts into the page */
+.hero-map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 30%),
+    radial-gradient(110% 100% at 75% 45%, transparent 40%, var(--bg) 92%);
+}
+
+.hero-map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* kill maplibre chrome so it reads as background art, not a widget */
+.hero-map .maplibregl-control-container,
+.hero-map .maplibregl-ctrl { display: none !important; }
+.hero-map .maplibregl-canvas { outline: none; }
+
+.map-pin {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--online);
+  box-shadow:
+    0 0 0 1.5px color-mix(in srgb, var(--bg) 60%, transparent),
+    0 0 7px 1px var(--online),
+    0 0 16px 4px var(--online-soft);
+  animation: map-pulse 2.4s ease-out infinite;
+}
+
+@keyframes map-pulse {
+  0%   { box-shadow: 0 0 0 0 var(--online-soft), 0 0 7px 1px var(--online); }
+  70%  { box-shadow: 0 0 0 11px transparent, 0 0 7px 1px var(--online); }
+  100% { box-shadow: 0 0 0 0 transparent, 0 0 7px 1px var(--online); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 56%;
 }
 
 .hero-status {
@@ -246,25 +347,50 @@ section {
   margin-bottom: 26px;
 }
 
+.kick-slash {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
 .hero-status .pulse {
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--online);
   animation: pulse 2.2s infinite;
 }
 
+.hero-loc {
+  margin-top: 26px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.dot-inline {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--online);
+  box-shadow: 0 0 6px 1px var(--online-soft);
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 var(--accent-soft); }
+  0%, 100% { box-shadow: 0 0 0 0 var(--online-soft); }
   50%      { box-shadow: 0 0 0 6px transparent; }
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.4rem, 8vw, 3.75rem);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
   font-weight: 600;
-  letter-spacing: -2.5px;
-  line-height: 0.98;
+  letter-spacing: -3px;
+  line-height: 0.95;
   color: var(--ink);
 }
 
@@ -380,12 +506,12 @@ section {
   gap: 18px;
   align-items: baseline;
   padding: 22px 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px dashed var(--line-strong);
   transition: padding-left 0.25s ease, background 0.2s ease;
 }
 
 .proj-row:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px dashed var(--line-strong);
 }
 
 .proj-row:hover {
@@ -613,12 +739,12 @@ section {
   gap: 18px;
   align-items: center;
   padding: 16px 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px dashed var(--line-strong);
   transition: padding-left 0.25s ease, background 0.2s ease;
 }
 
 .contact-row:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px dashed var(--line-strong);
 }
 
 .contact-row:hover {
@@ -667,6 +793,56 @@ section {
 }
 
 /* ============ RESPONSIVE ============ */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ── large screens: let the content breathe, scale type up ── */
+@media (min-width: 1000px) {
+  .hero { padding: 90px 0 72px; }
+  .hero-sub { font-size: 19px; max-width: 540px; }
+  .proj-name { font-size: 26px; }
+  .proj-desc { font-size: 14px; max-width: 620px; }
+  .about-text { font-size: 20px; max-width: 640px; }
+  .meta-cell .v { font-size: 16px; }
+}
+
+/* ── wide desktops: widen the canvas so it fills the screen ── */
+@media (min-width: 1440px) {
+  :root { --page-max: 1320px; }
+  .hero-sub { max-width: 600px; }
+  .proj-desc { max-width: 720px; }
+  .about-text { max-width: 720px; }
+}
+
+@media (min-width: 1700px) {
+  :root { --page-max: 1500px; }
+  .hero { padding: 110px 0 84px; }
+}
+
+@media (min-width: 2100px) {
+  :root { --page-max: 1720px; }
+}
+
+/* long strings (emails, urls) never push layout wider */
+.proj-desc,
+.contact-row .cv,
+.hero-sub,
+.about-text {
+  overflow-wrap: anywhere;
+}
+
+/* ── tablet ── */
+@media (max-width: 900px) {
+  .page { max-width: 100%; }
+  .page::before { left: 28%; }
+  .page::after  { left: 72%; }
+  .nav { gap: 16px; }
+  .hero { padding: 56px 0 50px; }
+}
+
+/* ── below this width the 3-line grid + nav stop helping ── */
 @media (max-width: 720px) {
   .page::before,
   .page::after,
@@ -676,40 +852,71 @@ section {
 
   .nav { display: none; }
 
+  .hero { padding: 48px 0 44px; }
   .hero h1 { letter-spacing: -1.5px; }
+  .hero-sub { max-width: 100%; }
+  .hero-content { max-width: 100%; }
+  .hero-map { display: none; }
+  .bp-plus { display: none; }
 
   .about-wrap { grid-template-columns: 1fr; }
 
   .stack-grid { grid-template-columns: 1fr; }
-
+  .stack-cell,
   .stack-cell:nth-child(2n) {
     border-right: 0;
     padding-left: 0;
-  }
-
-  .stack-cell {
-    border-right: 0;
     padding-right: 0;
   }
 
   .proj-row {
-    grid-template-columns: 30px 1fr;
+    grid-template-columns: 28px 1fr;
+    column-gap: 14px;
   }
-
   .proj-right {
     grid-column: 2;
     text-align: left;
-    margin-top: 4px;
-  }
-
-  .contact-row {
-    grid-template-columns: 100px 1fr 24px;
-    gap: 10px;
+    margin-top: 6px;
   }
 }
 
-@media (max-width: 480px) {
-  .inner { padding: 0 20px; }
-  .topbar-in { padding: 12px 20px; }
-  .contact-row .cv { font-size: 14px; }
+/* ── phones ── */
+@media (max-width: 560px) {
+  .inner { padding: 0 18px; }
+  .topbar-in { padding: 12px 18px; gap: 10px; }
+
+  .brand { font-size: 13px; }
+  .top-actions { gap: 10px; }
+
+  .sec-head { padding: 30px 0 18px; }
+
+  /* hero meta: stack to single column, full-width cells */
+  .hero-meta { grid-template-columns: 1fr; }
+  .meta-cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+  }
+  .meta-cell:last-child { border-bottom: 0; }
+
+  .hero-cta { flex-wrap: wrap; }
+  .hero-cta .btn { flex: 1; justify-content: center; }
+
+  .proj-name { font-size: 19px; }
+
+  /* contact: label on top, value below, arrow pinned right */
+  .contact-row {
+    grid-template-columns: 1fr 24px;
+    row-gap: 3px;
+    align-items: center;
+    padding: 14px 0;
+  }
+  .contact-row .ck { grid-column: 1; grid-row: 1; }
+  .contact-row .cv { grid-column: 1; grid-row: 2; font-size: 14px; }
+  .contact-row .ca { grid-column: 2; grid-row: 1 / span 2; }
+
+  .site-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
 }
