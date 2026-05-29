@@ -277,6 +277,17 @@ section {
 .bp-plus-2 { top: 200px; left: 75%; }
 .bp-plus-3 { top: 440px; left: 50%; }
 
+@media (prefers-reduced-motion: no-preference) {
+  .bp-plus { animation: bp-flicker 5s ease-in-out infinite; }
+  .bp-plus-2 { animation-delay: 1.6s; }
+  .bp-plus-3 { animation-delay: 3.1s; }
+}
+
+@keyframes bp-flicker {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.18; }
+}
+
 /* ============ HERO ============ */
 .hero {
   position: relative;
@@ -626,6 +637,15 @@ section {
   padding: 18px 18px 18px 0;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
+}
+
+.stack-cell:hover {
+  background: var(--hover);
+}
+
+.stack-cell:hover .l {
+  color: var(--accent);
 }
 
 .stack-cell:nth-child(2n) {
@@ -787,6 +807,28 @@ section {
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ SCROLL REVEAL ============ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js :is(
+    .sec-head, .proj-row, .stack-cell, .about-wrap,
+    .contact-big, .contact-text, .contact-row, .site-footer
+  ) {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
+                transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  html.js :is(
+    .sec-head, .proj-row, .stack-cell, .about-wrap,
+    .contact-big, .contact-text, .contact-row, .site-footer
+  ).in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ============ RESPONSIVE ============ */

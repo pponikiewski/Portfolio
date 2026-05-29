@@ -27,7 +27,8 @@ const lastName = restName.join(' ')
       const stored = window.localStorage.getItem('theme');
       const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.dataset.theme = stored === 'light' || stored === 'dark' ? stored : system;
-    </script>
+      document.documentElement.classList.add('js');
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -129,6 +130,33 @@ const lastName = restName.join(' ')
             tick();
             setInterval(tick, 1000);
           })();
+        </script>
+
+        <script is:inline>
+          window.addEventListener('DOMContentLoaded', function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const sel = '.sec-head, .proj-row, .stack-cell, .about-wrap, .contact-big, .contact-text, .contact-row, .site-footer';
+            const targets = Array.from(document.querySelectorAll(sel));
+            if (!('IntersectionObserver' in window) || !targets.length) {
+              targets.forEach((el) => el.classList.add('in'));
+              return;
+            }
+            // stagger siblings of the same kind
+            ['.proj-row', '.stack-cell', '.contact-row'].forEach((s) => {
+              document.querySelectorAll(s).forEach((el, i) => {
+                el.style.transitionDelay = Math.min(i * 0.06, 0.4) + 's';
+              });
+            });
+            const io = new IntersectionObserver((entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  e.target.classList.add('in');
+                  io.unobserve(e.target);
+                }
+              });
+            }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+            targets.forEach((el) => io.observe(el));
+          });
         </script>
 
         <!-- PROJECTS -->
