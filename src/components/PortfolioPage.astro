@@ -1,7 +1,6 @@
 ---
 import { ArrowUpRight, Download } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
-import { HeroMap } from './HeroMap'
 import type { Lang, PageContent } from '@/i18n/content'
 
 interface Props {
@@ -67,15 +66,24 @@ const lastName = restName.join(' ')
 
         <!-- HERO -->
         <section class="hero" style="border-bottom: 0;">
-          <div class="hero-map" aria-hidden="true">
-            <HeroMap client:only="react" />
+          <div class="hero-telem mono" aria-hidden="true">
+            <div class="telem-hdr">{page.telemetry.heading}</div>
+            {page.telemetry.rows.map((row) => (
+              <div class="telem-row">
+                <span class="tk">{row.k}</span>
+                {'kind' in row && row.kind === 'clock' ? (
+                  <span class="tv g" id="tele-clock">{row.v}</span>
+                ) : 'kind' in row && row.kind === 'green' ? (
+                  <span class="tv g">{row.v}</span>
+                ) : 'kind' in row && row.kind === 'accent' ? (
+                  <span class="tv a">{row.v}</span>
+                ) : (
+                  <span class="tv">{row.v}</span>
+                )}
+              </div>
+            ))}
           </div>
           <div class="hero-content">
-            <div class="hero-status">
-              <span class="kick-slash">//</span>
-              <span class="pulse"></span>
-              <span class="label">{page.hero.status}</span>
-            </div>
             <h1>{firstName}<br /><span class="light">{lastName}</span></h1>
             <p class="hero-sub">{page.hero.lead}</p>
             <div class="hero-type mono">
@@ -84,9 +92,6 @@ const lastName = restName.join(' ')
             <div class="hero-cta">
               <a class="btn primary" href="#projects">{page.hero.primaryCta}</a>
               <a class="btn ghost" href={`mailto:${page.contact.email}`}>{page.hero.secondaryCta}</a>
-            </div>
-            <div class="hero-loc mono">
-              based in <span class="dot-inline"></span> {page.hero.location}
             </div>
           </div>
         </section>
@@ -110,6 +115,19 @@ const lastName = restName.join(' ')
               setTimeout(type, del ? 18 : 42);
             }
             type();
+          })();
+        </script>
+
+        <script is:inline>
+          (function () {
+            const el = document.getElementById('tele-clock');
+            if (!el) return;
+            function tick() {
+              const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Warsaw' }));
+              el.textContent = d.toTimeString().slice(0, 8);
+            }
+            tick();
+            setInterval(tick, 1000);
           })();
         </script>
 

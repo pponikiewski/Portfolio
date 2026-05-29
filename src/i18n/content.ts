@@ -36,6 +36,17 @@ export const content = {
         'architektura feature-based z testami e2e',
       ],
     },
+    telemetry: {
+      heading: '// system readout',
+      rows: [
+        { k: 'lokalizacja', v: 'Bielsko-Biała, Śląsk, PL' },
+        { k: 'czas lokalny', v: '—', kind: 'clock' },
+        { k: 'status', v: '● otwarty na pracę', kind: 'green' },
+        { k: 'focus', v: 'full-stack · AI · Big data', kind: 'accent' },
+        { k: 'stack', v: 'React · Tauri · Rust' },
+        { k: 'projekty', v: '3 wdrożone' },
+      ],
+    },
     projectsIntro: {
       kicker: 'Wybrane projekty',
       title: 'Nie tylko interfejsy. Kompletne systemy z realnym zakresem.',
@@ -163,6 +174,17 @@ export const content = {
         'streaming AI for prompt optimizer',
         'signed auto-updater via GitHub Releases',
         'feature-based architecture with e2e tests',
+      ],
+    },
+    telemetry: {
+      heading: '// system readout',
+      rows: [
+        { k: 'location', v: 'Bielsko-Biała, Silesia, PL' },
+        { k: 'local time', v: '—', kind: 'clock' },
+        { k: 'status', v: '● open to work', kind: 'green' },
+        { k: 'focus', v: 'full-stack · AI · Big data', kind: 'accent' },
+        { k: 'stack', v: 'React · Tauri · Rust' },
+        { k: 'projects', v: '3 shipped' },
       ],
     },
     projectsIntro: {
