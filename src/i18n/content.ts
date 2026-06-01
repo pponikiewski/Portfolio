@@ -7,11 +7,11 @@ export const content = {
     meta: {
       title: 'Piotr Ponikiewski - Full-stack Developer',
       description:
-        'Portfolio full-stack developera budujacego aplikacje webowe, desktopowe i narzedzia AI.',
+        'Portfolio full-stack developera budującego aplikacje webowe, desktopowe i narzędzia AI.',
     },
     nav: {
       projects: 'Projekty',
-      process: 'Jak pracuje',
+      process: 'Jak pracuję',
       stack: 'Stack',
       about: 'O mnie',
       contact: 'Kontakt',
@@ -23,7 +23,7 @@ export const content = {
       status: 'Otwarty na współpracę',
       name: 'Piotr Ponikiewski',
       handle: 'Full-stack Developer',
-      lead: 'Buduję produkty webowe, desktopowe i AI. Interesuje mnie pełna droga — od modelu danych, przez interfejs, aż po wdrożenie i utrzymanie.',
+      lead: 'Buduję aplikacje webowe, desktopowe i narzędzia AI. Lubię prowadzić projekt w całości: dane, logika, interfejs i wdrożenie.',
       primaryCta: 'Zobacz projekty',
       secondaryCta: 'Napisz do mnie',
       location: 'Bielsko-Biała, 43-300 · Śląsk',
@@ -59,12 +59,12 @@ export const content = {
         status: 'Released',
         kind: 'Desktop / SaaS',
         description:
-          'Desktopowa aplikacja do mierzenia czasu pracy dla zespolow, z lokalna baza SQLite, synchronizacja z chmura, workspaceami, rolami i auto-updaterem.',
+          'Desktopowa aplikacja do mierzenia czasu pracy w zespołach. Lokalna baza SQLite, synchronizacja z chmurą, workspace’y, role i auto-updater.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Supabase', 'Rust'],
         highlights: [
-          'Offline-first mirror z outboxem i LWW merge',
-          'Multi-tenant workspace, role i zaproszenia',
-          'Signed auto-updater oraz release flow przez GitHub Releases',
+          'Tryb offline-first z outboxem i scalaniem LWW',
+          'Wiele workspace’ów, role i zaproszenia do zespołu',
+          'Podpisany auto-updater i wydania przez GitHub Releases',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/tracker' },
@@ -72,15 +72,15 @@ export const content = {
         ],
       },
       {
-        name: 'Roza Rozancowa',
+        name: 'Róża Różańcowa',
         status: 'MVP / rozwijany',
         kind: 'Web / PWA',
         description:
-          'Aplikacja webowa do zarzadzania grupami Zywego Rozanca: czlonkowie, roty tajemnic, intencje miesieczne, panel administratora i panel uzytkownika.',
+          'Aplikacja webowa do zarządzania grupami Żywego Różańca: członkowie, roty tajemnic, intencje miesięczne, panel administratora i użytkownika.',
         stack: ['React 19', 'TypeScript', 'Vite', 'Supabase', 'PWA', 'Playwright'],
         highlights: [
           'Automatyczna rotacja tajemnic i logika pozycji w grupie',
-          'Role, autoryzacja i bezpieczny dostep przez RLS',
+          'Role, logowanie i bezpieczny dostęp przez RLS',
           'Architektura feature-based oraz testy jednostkowe i e2e',
         ],
         links: [
@@ -92,12 +92,12 @@ export const content = {
         status: 'In progress',
         kind: 'AI / Education',
         description:
-          'Polska platforma edukacyjna do prompt engineeringu z lekcjami MDX, interaktywnymi modulami i narzedziami AI do optymalizacji promptow.',
+          'Polska platforma edukacyjna o prompt engineeringu. Lekcje w MDX, interaktywne moduły i narzędzia AI do optymalizacji promptów.',
         stack: ['Next.js 16', 'TypeScript', 'MDX', 'Vercel AI SDK', 'OpenRouter', 'Tailwind'],
         highlights: [
-          'Streaming AI dla prompt optimizera i mega-prompt wizard',
-          'Content lessons oparte o MDX i statyczne parametry',
-          'Produkt edukacyjny laczacy wiedze, narzedzia i praktyke AI',
+          'Streaming AI w optymalizatorze promptów i kreatorze mega-promptów',
+          'Lekcje oparte na MDX i statycznym generowaniu',
+          'Łączy wiedzę, narzędzia i praktykę pracy z AI',
         ],
         links: [],
       },
@@ -116,23 +116,59 @@ export const content = {
       kicker: 'Technologie',
       title: 'Stack dobrany pod produkt, nie pod liste modnych nazw.',
       groups: [
-        ['Frontend', ['React', 'TypeScript', 'Astro', 'Next.js', 'Tailwind']],
-        ['Backend / Data', ['Supabase', 'PostgreSQL', 'SQLite', 'RLS', 'Edge Functions']],
-        ['Desktop', ['Tauri', 'Rust', 'Auto-updater', 'Local-first']],
-        ['AI / Tools', ['Vercel AI SDK', 'OpenRouter', 'MDX', 'Automation']],
+        {
+          title: 'Frontend',
+          blurb: 'Buduję dopracowane, dostępne interfejsy. SPA oraz strony renderowane statycznie.',
+          items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
+        },
+        {
+          title: 'Backend / API',
+          blurb: 'Projektuję logikę serwerową i API, od modelu danych po endpoint.',
+          items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
+        },
+        {
+          title: 'Bazy / Dane',
+          blurb: 'Modeluję dane, piszę zapytania SQL i pilnuję bezpiecznego dostępu.',
+          items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
+        },
+        {
+          title: 'Data / Analiza',
+          blurb: 'Przetwarzam i analizuję dane, od czyszczenia po wnioski i raport.',
+          items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
+        },
+        {
+          title: 'Desktop',
+          blurb: 'Tworzę natywne aplikacje desktopowe na web-stacku, z auto-aktualizacją.',
+          items: ['Tauri', 'Rust'],
+        },
+        {
+          title: 'IT admin / Systemy',
+          blurb: 'Ogarniam systemy, skrypty i automatyzację po obu stronach: Linux i Windows.',
+          items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
+        },
+        {
+          title: 'DevOps / Testy',
+          blurb: 'Automatyzuję build, wdrożenie i testy, od commitu po release.',
+          items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
+        },
+        {
+          title: 'AI',
+          blurb: 'Wplatam asystentów AI w codzienny development i własne narzędzia.',
+          items: ['Claude Code', 'Codex', 'OpenRouter'],
+        },
       ],
     },
     about: {
       kicker: 'O mnie',
       title: 'Jestem full-stack developerem skupionym na realnych aplikacjach.',
       text:
-        'Najbardziej interesuja mnie projekty, w ktorych trzeba polaczyc produktowe myslenie z techniczna odpowiedzialnoscia: dane, logika, interfejs, wdrozenie i utrzymanie. Lubie nowe technologie, szczegolnie AI, ale oceniam je przez praktyczne zastosowanie.',
+        'Najbardziej kręcą mnie projekty, w których trzeba połączyć myślenie produktowe z techniczną robotą: dane, logika, interfejs i wdrożenie. Lubię nowe technologie, zwłaszcza AI, ale patrzę na nie przez praktyczne zastosowanie.',
     },
     contact: {
       kicker: 'Kontakt',
-      title: 'Masz role, projekt albo pomysl do sprawdzenia?',
+      title: 'Masz rolę, projekt albo pomysł do sprawdzenia?',
       text:
-        'Najprosciej napisac maila albo odezwac sie przez LinkedIn. CV jest dostepne jako PDF.',
+        'Najprościej napisać maila albo złapać mnie na LinkedIn. CV jest dostępne w PDF.',
       email: 'p.ponikiewski7@gmail.com',
       github: 'GitHub',
       githubHref: 'https://github.com/pponikiewski',
@@ -163,7 +199,7 @@ export const content = {
       status: 'Open to collaboration',
       name: 'Piotr Ponikiewski',
       handle: 'Full-stack Developer',
-      lead: 'I build web, desktop and AI products. I care about the full path — from data model, through interface, to deployment and maintenance.',
+      lead: 'I build web apps, desktop tools and AI features. I like owning a project end to end: data, logic, interface and shipping.',
       primaryCta: 'View projects',
       secondaryCta: 'Contact me',
       location: 'Bielsko-Biała, 43-300 · Silesia',
@@ -256,10 +292,46 @@ export const content = {
       kicker: 'Technologies',
       title: 'A stack selected for the product, not for a list of buzzwords.',
       groups: [
-        ['Frontend', ['React', 'TypeScript', 'Astro', 'Next.js', 'Tailwind']],
-        ['Backend / Data', ['Supabase', 'PostgreSQL', 'SQLite', 'RLS', 'Edge Functions']],
-        ['Desktop', ['Tauri', 'Rust', 'Auto-updater', 'Local-first']],
-        ['AI / Tools', ['Vercel AI SDK', 'OpenRouter', 'MDX', 'Automation']],
+        {
+          title: 'Frontend',
+          blurb: 'I build polished, accessible interfaces. SPAs and statically rendered sites.',
+          items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
+        },
+        {
+          title: 'Backend / API',
+          blurb: 'I design server logic and APIs, from data model to endpoint.',
+          items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
+        },
+        {
+          title: 'Databases / Data',
+          blurb: 'I model data, write SQL queries and enforce secure access.',
+          items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
+        },
+        {
+          title: 'Data / Analytics',
+          blurb: 'I wrangle and analyze data, from cleaning to insight and report.',
+          items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
+        },
+        {
+          title: 'Desktop',
+          blurb: 'I ship native desktop apps on a web stack, with auto-updates.',
+          items: ['Tauri', 'Rust'],
+        },
+        {
+          title: 'IT admin / Systems',
+          blurb: 'I handle systems, scripting and automation on both Linux and Windows.',
+          items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
+        },
+        {
+          title: 'DevOps / Testing',
+          blurb: 'I automate build, deployment and testing, from commit to release.',
+          items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
+        },
+        {
+          title: 'AI',
+          blurb: 'I weave AI assistants into daily development and my own tooling.',
+          items: ['Claude Code', 'Codex', 'OpenRouter'],
+        },
       ],
     },
     about: {

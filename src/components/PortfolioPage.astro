@@ -195,11 +195,15 @@ const lastName = restName.join(' ')
         <section id="stack" class="stack-wrap">
           <div class="sec-head"><span class="num">02</span><h2>{page.stack.kicker}</h2></div>
           <div class="stack-grid">
-            {page.stack.groups.map(([title, items]) => (
+            {page.stack.groups.map((group, i) => (
               <div class="stack-cell">
-                <div class="l">{title}</div>
-                <div class="stack-list">
-                  {items.map((item) => <span>{item}</span>)}
+                <div class="l">
+                  <span class="l-idx">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="l-title">{group.title}</span>
+                </div>
+                <p class="stack-blurb">{group.blurb}</p>
+                <div class="stack-tags">
+                  {group.items.map((item) => <span>{item}</span>)}
                 </div>
               </div>
             ))}

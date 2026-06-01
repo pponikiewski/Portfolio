@@ -655,6 +655,9 @@ section {
 }
 
 .stack-cell .l {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 9px;
   letter-spacing: 0.18em;
@@ -662,16 +665,40 @@ section {
   color: var(--accent);
 }
 
-.stack-list {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.stack-cell .l-idx { color: var(--muted); }
+.stack-cell .l-title { flex: 1; }
+
+.stack-blurb {
+  margin: 12px 0 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 38ch;
 }
 
-.stack-list span {
-  font-size: 15px;
-  font-weight: 500;
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stack-tags span {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.stack-cell:hover .stack-tags span {
+  border-color: var(--line-strong);
+}
+
+.stack-tags span:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ============ ABOUT ============ */
@@ -819,7 +846,6 @@ section {
     transform: translateY(24px);
     transition: opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
                 transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
-    will-change: opacity, transform;
   }
 
   html.js :is(
@@ -832,9 +858,10 @@ section {
 }
 
 /* ============ RESPONSIVE ============ */
-html,
-body {
-  overflow-x: hidden;
+/* clip (not hidden) avoids creating a scroll container on <html>,
+   which intermittently froze vertical scrolling in Chrome */
+html {
+  overflow-x: clip;
 }
 
 /* ── large screens: let the content breathe, scale type up ── */
