@@ -31,9 +31,9 @@ export const content = {
       typingPhrases: [
         'offline-first sync z outboxem i LWW merge',
         'multi-tenant workspace, role i zaproszenia',
-        'streaming AI dla prompt optimizera',
-        'signed auto-updater przez GitHub Releases',
-        'architektura feature-based z testami e2e',
+        'desktopowy budżet z SQLite i Drizzle ORM',
+        'automatyczna rotacja tajemnic i testy e2e',
+        'generator tokenów RPG z eksportem do PNG',
       ],
     },
     telemetry: {
@@ -225,9 +225,9 @@ export const content = {
       typingPhrases: [
         'offline-first sync with outbox and LWW merge',
         'multi-tenant workspaces, roles and invitations',
-        'streaming AI for prompt optimizer',
-        'signed auto-updater via GitHub Releases',
-        'feature-based architecture with e2e tests',
+        'desktop budget app with SQLite and Drizzle ORM',
+        'automatic mystery rotation and e2e tests',
+        'RPG token generator with PNG export',
       ],
     },
     telemetry: {
