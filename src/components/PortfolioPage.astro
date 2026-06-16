@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { lang, page } = Astro.props
-const cvPath = '/cv/Piotr_Ponikiewski_cv.pdf'
+const cvPath = `/cv/Piotr_Ponikiewski_cv_${lang}.pdf`
 const profilePath = '/images/1.jpg'
 
 const [firstName, ...restName] = page.hero.name.split(' ')
