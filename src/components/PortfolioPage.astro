@@ -10,7 +10,7 @@ interface Props {
 
 const { lang, page } = Astro.props
 const cvPath = '/cv/Piotr_Ponikiewski_cv.pdf'
-const profilePath = '/images/profile.webp'
+const profilePath = '/images/1.jpg'
 
 const [firstName, ...restName] = page.hero.name.split(' ')
 const lastName = restName.join(' ')
@@ -273,6 +273,7 @@ const lastName = restName.join(' ')
             <div class="about-body">
               <p class="about-lead">{page.about.lead}</p>
               <p class="about-text">{page.about.text}</p>
+              <p class="about-text about-text--2">{page.about.text2}</p>
               <dl class="about-facts">
                 {page.about.facts.map(([k, v]) => (
                   <div class="fact">

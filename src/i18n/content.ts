@@ -170,9 +170,11 @@ export const content = {
     },
     about: {
       kicker: 'O mnie',
-      lead: 'Buduję aplikacje fullstack w TypeScript. Interesuję się AI i wdrażam ją w praktyce: automatyzacje, narzędzia wspomagające pracę, szybsze prototypowanie.',
+      lead: 'Full-stack Developer',
       text:
-        'Chętnie sięgam po nowe rzeczy i staram się rozumieć to, czego używam. Poza kodem ciekawi mnie technologia, kosmos i nauka ogólnie. Dbam też o zdrowie i sport, bo to trzyma głowę w dobrym rytmie.',
+        'Buduję aplikacje fullstack w TypeScript. Interesuję się AI i wdrażam ją w praktyce: automatyzacje, narzędzia wspomagające pracę, szybsze prototypowanie.',
+      text2:
+        'Chętnie sięgam po nowe rzeczy i staram się rozumieć to, czego używam. Poza kodem ciekawi mnie technologia, kosmos i nauka ogólnie.',
       facts: [
         ['Edukacja', 'Inżynier Informatyki, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'Technik Informatyk, ZSEEiM Bielsko-Biała (2017–2021)'],
@@ -364,9 +366,11 @@ export const content = {
     },
     about: {
       kicker: 'About',
-      lead: 'I build fullstack apps in TypeScript. I use AI in practice: automation, dev tooling, faster prototyping.',
+      lead: 'Full-stack Developer',
       text:
-        'I like picking up new things and try to understand what I use. Beyond code I am curious about technology, space and science in general. I also care about health and sport, it keeps my head in a good rhythm.',
+        'I build fullstack apps in TypeScript. I use AI in practice: automation, dev tooling, faster prototyping.',
+      text2:
+        'I like picking up new things and try to understand what I use. Beyond code I am curious about technology, space and science in general.',
       facts: [
         ['Education', 'BEng Computer Science, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'IT Technician, ZSEEiM Bielsko-Biała (2017–2021)'],
