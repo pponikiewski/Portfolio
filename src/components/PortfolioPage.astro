@@ -24,6 +24,7 @@ const lastName = restName.join(' ')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={page.meta.description} />
     <title>{page.meta.title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       const stored = window.localStorage.getItem('theme');
       const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';

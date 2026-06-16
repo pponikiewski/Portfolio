@@ -188,8 +188,8 @@ export const content = {
       kicker: 'Kontakt',
       title: 'Napisz, jeśli szukasz kogoś do <em>zespołu</em> albo masz projekt.',
       text:
-        'Odpisuję na maile i wiadomości na LinkedIn. CV poniżej.',
-      email: 'p.ponikiewski7@gmail.com',
+        'Odezwę się jak najszybciej.',
+      email: 'piotr@pponikiewski.dev',
       github: 'GitHub',
       githubHref: 'https://github.com/pponikiewski',
       githubLabel: 'github.com/pponikiewski',
@@ -384,8 +384,8 @@ export const content = {
       kicker: 'Contact',
       title: 'Reach out if you have a <em>role</em> or a project in mind.',
       text:
-        'I reply to emails and LinkedIn messages. CV below.',
-      email: 'p.ponikiewski7@gmail.com',
+        "I'll get back to you as soon as possible.",
+      email: 'piotr@pponikiewski.dev',
       github: 'GitHub',
       githubHref: 'https://github.com/pponikiewski',
       githubLabel: 'github.com/pponikiewski',
