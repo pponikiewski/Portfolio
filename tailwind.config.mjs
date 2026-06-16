@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        sans: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['Commit Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
     },
   },

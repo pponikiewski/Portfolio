@@ -20,5 +20,6 @@ updated: 2026-06-16
 - README (wizytówka repo) → w rootcie projektu, aktualizowany przez /sync
 
 ## Status
+- 2026-06-16 — fonty zmienione: Inter→Geist Variable, JetBrains Mono→Commit Mono; self-hosted via Fontsource
 - 2026-06-16 — projekty zaktualizowane: Deep Prompt → Budgie; dodano sekcję "więcej projektów" z toggle
 - 2026-06-16 — sekcja About ukończona: zdjęcie, bio, edukacja, hero lead (PL+EN); scroll-reveal, polish UI; plan COMPLETED

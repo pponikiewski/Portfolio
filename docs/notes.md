@@ -1,5 +1,6 @@
 # portfolio — Session Notes
 <!-- One line per commit, appended via /sync: date | commit subject | what/why -->
+- 2026-06-16 | chore(fonts): swap Inter→Geist Variable, JetBrains Mono→Commit Mono | Zmieniono czcionki na self-hosted via Fontsource; usunięto Google Fonts (zero external requests)
 - 2026-06-16 | fix(css): apply wide-screen width tokens in light theme | Poprawiono tokeny szerokości dla jasnego motywu na szerokich ekranach
 - 2026-06-16 | feat(ui): scroll-reveal animations and hover polish | Dodano animacje scroll-reveal i dopracowano efekty hover
 - 2026-06-16 | feat(content): capability-line stack, human copy, scroll fix | Przepisano copy na bardziej ludzkie; dodano linię capability w stacku; fix scrollowania

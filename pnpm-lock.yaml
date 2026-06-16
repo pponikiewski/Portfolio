@@ -14,6 +14,12 @@ importers:
       '@astrojs/tailwind':
         specifier: ^6.0.0
         version: 6.0.2(astro@5.18.1(jiti@1.21.7)(rollup@4.60.4)(typescript@5.9.3)(yaml@2.9.0))(tailwindcss@3.4.19(yaml@2.9.0))
+      '@fontsource-variable/geist':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource/commit-mono':
+        specifier: ^5.2.5
+        version: 5.2.5
       astro:
         specifier: ^5.7.0
         version: 5.18.1(jiti@1.21.7)(rollup@4.60.4)(typescript@5.9.3)(yaml@2.9.0)
@@ -524,6 +530,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/geist@5.2.9':
+    resolution: {integrity: sha512-TP+QSBG3wxKGPE33CbMy/L0Nu3qvJ6Fy81Yc4LnQ95xH+i+cfEp8fyU8/kfV14YwszxIFPhnoMTbjL71waVpyQ==}
+
+  '@fontsource/commit-mono@5.2.5':
+    resolution: {integrity: sha512-htX8yQWtiPt5L1Hzh4sirvfUJT2+KYiquDB/Q2sY2tWQYplpBUOD5zHnIM3k36Hnm4V+JIIqA/wmwupSQ68WjA==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2865,6 +2877,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.7':
     optional: true
+
+  '@fontsource-variable/geist@5.2.9': {}
+
+  '@fontsource/commit-mono@5.2.5': {}
 
   '@img/colour@1.1.0':
     optional: true
