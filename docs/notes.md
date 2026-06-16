@@ -11,3 +11,4 @@
 - 2026-06-16 | fix(hero): update typing phrases to match current projects | Zaktualizowano animowane frazy w hero żeby odzwierciedlały aktualne projekty
 - 2026-06-16 | fix(stack): more breathing room, bigger tags, ink color default | Więcej odstępów w stacku, większe tagi, domyślny kolor ink
 - 2026-06-16 | feat(about): photo 1.jpg, Full-stack Developer heading, two-paragraph bio | Dodano zdjęcie profilowe, nagłówek "Full-stack Developer", dwuakapitowe bio
+- 2026-06-16 | fix(hero): stack system readout below content on small screens | Na ≤900px telem przechodzi z position:absolute do flex-child order:1 zamiast display:none

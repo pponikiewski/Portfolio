@@ -1006,9 +1006,17 @@ html {
   .page::before { left: 28%; }
   .page::after  { left: 72%; }
   .nav { gap: 16px; }
-  .hero { padding: 56px 0 50px; }
-  .hero-telem { display: none; }
-  .hero-content { max-width: 100%; }
+  .hero { padding: 56px 0 50px; display: flex; flex-direction: column; }
+  .hero-content { max-width: 100%; order: 0; }
+  .hero-telem {
+    position: static;
+    transform: none;
+    top: auto;
+    right: auto;
+    width: 100%;
+    order: 1;
+    margin-top: 32px;
+  }
 }
 
 /* ── below this width the 3-line grid + nav stop helping ── */
@@ -1025,7 +1033,6 @@ html {
   .hero h1 { letter-spacing: -1.5px; }
   .hero-sub { max-width: 100%; }
   .hero-content { max-width: 100%; }
-  .hero-telem { display: none; }
   .bp-plus { display: none; }
 
   .about-wrap { grid-template-columns: 1fr; }
