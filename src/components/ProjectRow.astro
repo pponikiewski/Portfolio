@@ -1,0 +1,46 @@
+---
+import { ArrowUpRight } from 'lucide-react'
+
+interface Project {
+  name: string
+  kind: string
+  description: string
+  highlights: readonly string[]
+  stack: readonly string[]
+  links: readonly { label: string; href: string }[]
+  status: string
+}
+
+interface Props {
+  project: Project
+  index: number
+}
+
+const { project, index } = Astro.props
+---
+
+<div class="proj-row">
+  <div class="proj-idx">{String(index + 1).padStart(3, '0')}</div>
+  <div class="proj-main">
+    <div class="proj-name">{project.name} <span class="kind">· {project.kind}</span></div>
+    <p class="proj-desc">{project.description}</p>
+    <ul class="proj-highlights">
+      {project.highlights.map((highlight) => <li>{highlight}</li>)}
+    </ul>
+    <div class="proj-stack">
+      {project.stack.map((item) => <span>{item}</span>)}
+    </div>
+    {project.links.length > 0 && (
+      <div class="proj-links">
+        {project.links.map((link) => (
+          <a href={link.href} target="_blank" rel="noreferrer">
+            {link.label}<ArrowUpRight size={13} />
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="proj-right">
+    <div class="proj-status">{project.status}</div>
+  </div>
+</div>

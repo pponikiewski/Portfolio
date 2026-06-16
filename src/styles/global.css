@@ -352,45 +352,6 @@ section {
   max-width: 56%;
 }
 
-.hero-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 26px;
-}
-
-.kick-slash {
-  font-family: 'Commit Mono', ui-monospace, monospace;
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-
-.hero-status .pulse {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--online);
-  animation: pulse 2.2s infinite;
-}
-
-.hero-loc {
-  margin-top: 26px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.dot-inline {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--online);
-  box-shadow: 0 0 6px 1px var(--online-soft);
-  vertical-align: middle;
-  margin: 0 3px;
-}
 
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 0 0 var(--online-soft); }
@@ -480,36 +441,6 @@ section {
   color: var(--accent);
 }
 
-.hero-meta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 40px;
-  border-top: 1px solid var(--line-strong);
-}
-
-.meta-cell {
-  padding: 14px 0;
-  border-right: 1px solid var(--line);
-  padding-right: 14px;
-}
-
-.meta-cell:last-child {
-  border-right: 0;
-}
-
-.meta-cell .l {
-  font-family: 'Commit Mono', ui-monospace, monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.meta-cell .v {
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 5px;
-}
 
 /* ============ PROJECTS (index list) ============ */
 .proj-row {
@@ -684,13 +615,6 @@ section {
 .stack-cell .l-idx { color: var(--muted); }
 .stack-cell .l-title { flex: 1; }
 
-.stack-blurb {
-  margin: 12px 0 16px;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink);
-  max-width: 38ch;
-}
 
 .stack-tags {
   display: flex;
@@ -774,25 +698,6 @@ section {
   object-fit: cover;
 }
 
-.about-cap {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-top: 12px;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.about-cap .cap-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--online);
-  box-shadow: 0 0 6px 1px var(--online-soft);
-  animation: pulse 2.2s infinite;
-}
 
 .about-lead {
   position: relative;
@@ -1068,7 +973,6 @@ html {
   .proj-name { font-size: 26px; }
   .proj-desc { font-size: 14px; max-width: 620px; }
   .about-text { font-size: 20px; max-width: 640px; }
-  .meta-cell .v { font-size: 16px; }
 }
 
 /* ── wide desktops: widen the canvas so it fills the screen ── */
@@ -1155,16 +1059,7 @@ html {
 
   .sec-head { padding: 30px 0 18px; }
 
-  /* hero meta: stack to single column, full-width cells */
-  .hero-meta { grid-template-columns: 1fr; }
-  .meta-cell {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    padding: 12px 0;
-  }
-  .meta-cell:last-child { border-bottom: 0; }
-
-  .hero-cta { flex-wrap: wrap; }
+.hero-cta { flex-wrap: wrap; }
   .hero-cta .btn { flex: 1; justify-content: center; }
 
   .proj-name { font-size: 19px; }

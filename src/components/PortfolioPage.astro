@@ -1,6 +1,7 @@
 ---
-import { ArrowUpRight, Download } from 'lucide-react'
+import { Download } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
+import ProjectRow from './ProjectRow.astro'
 import type { Lang, PageContent } from '@/i18n/content'
 
 interface Props {
@@ -116,104 +117,21 @@ const lastName = restName.join(' ')
           })();
         </script>
 
-        <script is:inline>
-          (function () {
-            const el = document.getElementById('tele-clock');
-            if (!el) return;
-            function tick() {
-              const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Warsaw' }));
-              el.textContent = d.toTimeString().slice(0, 8);
-            }
-            tick();
-            setInterval(tick, 1000);
-          })();
-        </script>
-
-        <script is:inline>
-          window.addEventListener('DOMContentLoaded', function () {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            const sel = '.sec-head, .proj-row, .stack-cell, .about-wrap, .contact-big, .contact-text, .contact-row, .site-footer';
-            const targets = Array.from(document.querySelectorAll(sel));
-            if (!('IntersectionObserver' in window) || !targets.length) {
-              targets.forEach((el) => el.classList.add('in'));
-              return;
-            }
-            // stagger siblings of the same kind
-            ['.proj-row', '.stack-cell', '.contact-row'].forEach((s) => {
-              document.querySelectorAll(s).forEach((el, i) => {
-                el.style.transitionDelay = Math.min(i * 0.06, 0.4) + 's';
-              });
-            });
-            const io = new IntersectionObserver((entries) => {
-              entries.forEach((e) => {
-                if (e.isIntersecting) {
-                  e.target.classList.add('in');
-                  io.unobserve(e.target);
-                }
-              });
-            }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-            targets.forEach((el) => io.observe(el));
-          });
+        <script>
+          import '../scripts/clock'
+          import '../scripts/scroll-reveal'
         </script>
 
         <!-- PROJECTS -->
         <section id="projects">
           <div class="sec-head"><span class="num">01</span><h2>{page.projectsIntro.kicker}</h2></div>
           {page.projects.map((project, index) => (
-            <div class="proj-row">
-              <div class="proj-idx">{String(index + 1).padStart(3, '0')}</div>
-              <div class="proj-main">
-                <div class="proj-name">{project.name} <span class="kind">· {project.kind}</span></div>
-                <p class="proj-desc">{project.description}</p>
-                <ul class="proj-highlights">
-                  {project.highlights.map((highlight) => <li>{highlight}</li>)}
-                </ul>
-                <div class="proj-stack">
-                  {project.stack.map((item) => <span>{item}</span>)}
-                </div>
-                {project.links.length > 0 && (
-                  <div class="proj-links">
-                    {project.links.map((link) => (
-                      <a href={link.href} target="_blank" rel="noreferrer">
-                        {link.label}<ArrowUpRight size={13} />
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div class="proj-right">
-                <div class="proj-status">{project.status}</div>
-              </div>
-            </div>
+            <ProjectRow project={project} index={index} />
           ))}
 
           <div id="more-projects-list">
             {page.moreProjects.map((project, index) => (
-              <div class="proj-row">
-                <div class="proj-idx">{String(page.projects.length + index + 1).padStart(3, '0')}</div>
-                <div class="proj-main">
-                  <div class="proj-name">{project.name} <span class="kind">· {project.kind}</span></div>
-                  <p class="proj-desc">{project.description}</p>
-                  <ul class="proj-highlights">
-                    {project.highlights.map((highlight) => <li>{highlight}</li>)}
-                  </ul>
-                  <div class="proj-stack">
-                    {project.stack.map((item) => <span>{item}</span>)}
-                  </div>
-                  {project.links.length > 0 && (
-                    <div class="proj-links">
-                      {project.links.map((link) => (
-                        <a href={link.href} target="_blank" rel="noreferrer">
-                          {link.label}<ArrowUpRight size={13} />
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div class="proj-right">
-                  <div class="proj-status">{project.status}</div>
-                </div>
-              </div>
+              <ProjectRow project={project} index={page.projects.length + index} />
             ))}
           </div>
 
