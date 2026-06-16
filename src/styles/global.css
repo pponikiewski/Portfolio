@@ -844,6 +844,13 @@ section {
   padding-top: 2px;
 }
 
+.about-facts dt:empty { display: none; }
+.about-facts .fact:has(dt:empty) {
+  padding-top: 2px;
+  padding-bottom: 6px;
+  border-bottom: none;
+}
+
 .about-facts dd {
   margin: 0;
   font-size: 14px;

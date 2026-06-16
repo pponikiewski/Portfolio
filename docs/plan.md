@@ -1,31 +1,22 @@
-# Plan: Budgie + przycisk "więcej projektów"
+# Plan: About + hero lead update
 
-STATUS: COMPLETED 2026-06-16
+STATUS: IN PROGRESS 2026-06-16
 
 ## Assumptions
-
-1. Budgie = `D:\dev\budget` — desktopowa aplikacja budżetu domowego (Tauri 2 + React 19 + SQLite)
-2. GitHub link: `https://github.com/pponikiewski/budget`
-3. "Osobna karta" = sekcja inline która się **rozwija** po kliknięciu przycisku
-4. W sekcji "więcej": TokenForge jako drugi projekt
-5. Oba języki aktualizowane symetrycznie
+1. hero.lead = paragraf pod h1 w hero (`<p class="hero-sub">`)
+2. figcaption.about-cap usunięty z template (zielona kropka + handle)
+3. about.lead + about.text zaktualizowane treścią z CV
+4. Edukacja: dt:empty { display: none } + pełne dane ze szkoły i lat
 
 ## Success criteria
-
-- [x] `Deep Prompt` zastąpiony przez `Budgie` w `content.ts` (pl + en)
-- [x] Pod listą 3 projektów widnieje przycisk "Więcej projektów" / "More projects"
-- [x] Kliknięcie przycisku odsłania co najmniej 1 dodatkowy projekt w formacie `.proj-row`
-- [x] Przycisk zmienia label: "Pokaż mniej" / "Show less" po rozwinięciu
-- [x] Sekcja widoczna bez JS (graceful degradation)
-- [x] `npm run build` przechodzi bez błędów TypeScript
+- [ ] hero.lead (PL) zawiera podany przez usera tekst co do słowa
+- [ ] hero.lead (EN) zawiera przetłumaczoną wersję
+- [ ] figcaption.about-cap nie istnieje w wyrenderowanym HTML
+- [ ] about.lead i about.text zaktualizowane (PL + EN)
+- [ ] Edukacja: dwa wiersze, drugi bez widocznego labelu, pełne dane
+- [ ] `npm run build` przechodzi bez błędów
 
 ## Scope
-
-- `src/i18n/content.ts` — zamiana Deep Prompt → Budgie + nowa tablica `moreProjects`
-- `src/components/PortfolioPage.astro` — blok `moreProjects` + przycisk toggle + inline `<script>`
-
-## Simplest approach
-
-`moreProjects` to osobna tablica w `content` obok `projects`. W Astro renderuję ją jako
-`<div id="more-projects-list">` ukryty przez JS przy starcie (graceful degradation: bez JS
-lista widoczna). Przycisk toggluje `display` i zmienia `textContent`.
+- src/i18n/content.ts
+- src/components/PortfolioPage.astro
+- src/styles/global.css
