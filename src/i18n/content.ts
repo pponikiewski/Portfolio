@@ -92,12 +92,12 @@ export const content = {
         status: 'In progress',
         kind: 'Desktop',
         description:
-          'Desktopowa aplikacja do domowego budżetu: przychody, wydatki, kategorie i bilans na żywo. Dane trzymane lokalnie w SQLite — działa offline, bez konta.',
+          'Desktopowa aplikacja do domowego budżetu: przychody, wydatki, kategorie i bilans na żywo. Dane trzymane lokalnie w SQLite, działa offline, bez konta.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
           'Przychody i wydatki z kategoriami zależnymi od typu wpisu',
           'Bilans na żywo, filtrowanie po miesiącu i zestawienie według kategorii',
-          'Lokalne dane w SQLite — działa offline, bez konta i bez serwera',
+          'Lokalne dane w SQLite, działa offline, bez konta i bez serwera',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
@@ -131,47 +131,39 @@ export const content = {
       ],
     },
     stack: {
-      kicker: 'Technologie',
+      kicker: 'Technologie z których korzystam',
       title: 'Stack dobrany pod produkt, nie pod liste modnych nazw.',
       groups: [
         {
           title: 'Frontend',
-          blurb: 'Buduję dopracowane, dostępne interfejsy. SPA oraz strony renderowane statycznie.',
           items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
         },
         {
           title: 'Backend / API',
-          blurb: 'Projektuję logikę serwerową i API, od modelu danych po endpoint.',
           items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
         },
         {
           title: 'Bazy / Dane',
-          blurb: 'Modeluję dane, piszę zapytania SQL i pilnuję bezpiecznego dostępu.',
           items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
         },
         {
           title: 'Data / Analiza',
-          blurb: 'Przetwarzam i analizuję dane, od czyszczenia po wnioski i raport.',
           items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
         },
         {
           title: 'Desktop',
-          blurb: 'Tworzę natywne aplikacje desktopowe na web-stacku, z auto-aktualizacją.',
           items: ['Tauri', 'Rust'],
         },
         {
           title: 'IT admin / Systemy',
-          blurb: 'Ogarniam systemy, skrypty i automatyzację po obu stronach: Linux i Windows.',
           items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
         },
         {
           title: 'DevOps / Testy',
-          blurb: 'Automatyzuję build, wdrożenie i testy, od commitu po release.',
           items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
         },
         {
           title: 'AI',
-          blurb: 'Wplatam asystentów AI w codzienny development i własne narzędzia.',
           items: ['Claude Code', 'Codex', 'OpenRouter'],
         },
       ],
@@ -293,12 +285,12 @@ export const content = {
         status: 'In progress',
         kind: 'Desktop',
         description:
-          'A desktop personal budget app: income, expenses, categories and a live balance. Data stored locally in SQLite — works offline, no account needed.',
+          'A desktop personal budget app: income, expenses, categories and a live balance. Data stored locally in SQLite, works offline, no account needed.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
           'Income and expense entries with type-dependent categories',
           'Live balance, month filtering and per-category breakdown',
-          'Local SQLite storage — works offline, no account or server needed',
+          'Local SQLite storage, works offline, no account or server needed',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
@@ -332,47 +324,39 @@ export const content = {
       ],
     },
     stack: {
-      kicker: 'Technologies',
+      kicker: 'Technologies I use',
       title: 'A stack selected for the product, not for a list of buzzwords.',
       groups: [
         {
           title: 'Frontend',
-          blurb: 'I build polished, accessible interfaces. SPAs and statically rendered sites.',
           items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
         },
         {
           title: 'Backend / API',
-          blurb: 'I design server logic and APIs, from data model to endpoint.',
           items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
         },
         {
           title: 'Databases / Data',
-          blurb: 'I model data, write SQL queries and enforce secure access.',
           items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
         },
         {
           title: 'Data / Analytics',
-          blurb: 'I wrangle and analyze data, from cleaning to insight and report.',
           items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
         },
         {
           title: 'Desktop',
-          blurb: 'I ship native desktop apps on a web stack, with auto-updates.',
           items: ['Tauri', 'Rust'],
         },
         {
           title: 'IT admin / Systems',
-          blurb: 'I handle systems, scripting and automation on both Linux and Windows.',
           items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
         },
         {
           title: 'DevOps / Testing',
-          blurb: 'I automate build, deployment and testing, from commit to release.',
           items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
         },
         {
           title: 'AI',
-          blurb: 'I weave AI assistants into daily development and my own tooling.',
           items: ['Claude Code', 'Codex', 'OpenRouter'],
         },
       ],
