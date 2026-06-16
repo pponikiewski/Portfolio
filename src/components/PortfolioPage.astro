@@ -189,6 +189,57 @@ const lastName = restName.join(' ')
               </div>
             </div>
           ))}
+
+          <div id="more-projects-list">
+            {page.moreProjects.map((project, index) => (
+              <div class="proj-row">
+                <div class="proj-idx">{String(page.projects.length + index + 1).padStart(3, '0')}</div>
+                <div class="proj-main">
+                  <div class="proj-name">{project.name} <span class="kind">· {project.kind}</span></div>
+                  <p class="proj-desc">{project.description}</p>
+                  <ul class="proj-highlights">
+                    {project.highlights.map((highlight) => <li>{highlight}</li>)}
+                  </ul>
+                  <div class="proj-stack">
+                    {project.stack.map((item) => <span>{item}</span>)}
+                  </div>
+                  {project.links.length > 0 && (
+                    <div class="proj-links">
+                      {project.links.map((link) => (
+                        <a href={link.href} target="_blank" rel="noreferrer">
+                          {link.label}<ArrowUpRight size={13} />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div class="proj-right">
+                  <div class="proj-status">{project.status}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="proj-more-wrap">
+            <button id="more-projects-btn" class="btn ghost proj-more-btn" aria-expanded="false">
+              {lang === 'pl' ? 'Więcej projektów' : 'More projects'}
+            </button>
+          </div>
+
+          <script is:inline define:vars={{ labelMore: lang === 'pl' ? 'Więcej projektów' : 'More projects', labelLess: lang === 'pl' ? 'Pokaż mniej' : 'Show less' }}>
+            (function () {
+              const list = document.getElementById('more-projects-list');
+              const btn = document.getElementById('more-projects-btn');
+              if (!list || !btn) return;
+              list.style.display = 'none';
+              btn.addEventListener('click', function () {
+                const open = list.style.display !== 'none';
+                list.style.display = open ? 'none' : 'block';
+                btn.textContent = open ? labelMore : labelLess;
+                btn.setAttribute('aria-expanded', String(!open));
+              });
+            })();
+          </script>
         </section>
 
         <!-- STACK -->
@@ -214,11 +265,26 @@ const lastName = restName.join(' ')
         <section id="about">
           <div class="sec-head"><span class="num">03</span><h2>{page.about.kicker}</h2></div>
           <div class="about-wrap">
-            <div class="about-photo">
-              <img src={profilePath} alt={page.hero.name} loading="lazy" />
-            </div>
-            <div>
+            <figure class="about-figure">
+              <div class="about-photo">
+                <img src={profilePath} alt={page.hero.name} loading="lazy" />
+              </div>
+              <figcaption class="about-cap mono">
+                <span class="cap-dot"></span>{page.hero.handle}
+              </figcaption>
+            </figure>
+            <div class="about-body">
+              <p class="about-lead">{page.about.lead}</p>
               <p class="about-text">{page.about.text}</p>
+              <dl class="about-facts">
+                {page.about.facts.map(([k, v]) => (
+                  <div class="fact">
+                    <dt>{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p class="about-looking"><span class="ico">▸</span>{page.about.looking}</p>
               <div class="about-tags">
                 {page.hero.interests.map((tag) => <span>{tag}</span>)}
               </div>

@@ -1,52 +1,39 @@
-# CLAUDE.md
-
-Personal portfolio site for Piotr Ponikiewski. Static, bilingual (PL/EN), single-page-per-language with a mono-grid minimalist design.
+# Project: portfolio
 
 ## Stack
-
-- **Astro 5.7** — static site generator, ships zero JS by default
-- **React 19** — used only for islands (`ThemeToggle`), hydrated via `client:load`
-- **Tailwind 3.4** — utility layer (`@astrojs/tailwind`); most styling lives in hand-written CSS, not utilities
-- **TypeScript 5.7** — strict
-- **lucide-react** — icons
+- **Runtime:** Node.js (pnpm)
+- **Language:** TypeScript (strict mode — zero `any`)
+- **Framework:** Astro (islands architecture; minimal client JS by default)
+- **UI:** React (within the framework)
+- **Styling:** Tailwind CSS
 
 ## Commands
-
 ```bash
-npm run dev      # astro dev --host 127.0.0.1 (localhost:4321)
-npm run build    # astro check && astro build  (type-checks, then builds to dist/)
-npm run preview  # serve the production build
+pnpm install        # install deps
+pnpm run dev        # run dev
+pnpm run test        # tests
+pnpm run typecheck        # static check
+pnpm run build        # build
 ```
 
-Always run `npm run build` before claiming a change is done — `astro check` catches type errors the dev server ignores.
+## Rules
+- TypeScript strict — zero `any`, use `unknown` if needed
+- Never expose secrets/credentials in code or logs
 
-## Architecture
+## Workflow (complements Karpathy guidelines — do not repeat their rituals)
+- Karpathy principles (assumptions, surgical scope, simplicity) are active globally — apply them, don't restate them
+- **Mark deliberate simplifications** with a `ponytail:` comment naming the ceiling and the upgrade path, e.g. `// ponytail: in-memory store, swap for Redis if it needs to survive restarts`. A known shortcut reads as intent; an unmarked one reads as a bug
+- If an explanation defending a simplification would be longer than the code itself, cut the explanation — prose defending simplicity is complexity smuggled back in
+- **Steer, don't prescribe:** when guidance has no single right answer (approach, architecture), give the goal and the why, then trust your judgment for the how — never follow a checklist that doesn't fit the task. When it has a defensibly right shape (format, security), keep the specifics
+- **Verification loop (Goal-Driven Execution):** a task is DONE only when `pnpm run typecheck` and `pnpm run test` pass AND each acceptance criterion is checked off. Loop autonomously until green — don't report partial success
+- **Fast path:** trivial change (typo, one-liner, single-file tweak) → skip planning rigor entirely, just do it and run the static check
+- Docs are synced via `/sync`: docs/notes.md (always), docs/plan.md (checkboxes), docs/architecture.md (only on architectural decisions), README (user-facing changes). Remind me if the session did significant work and I haven't synced
 
-- `src/pages/index.astro` — redirects `/` → `/pl`
-- `src/pages/[lang]/index.astro` — generates `/pl` and `/en` via `getStaticPaths()`; imports `global.css`, picks content by lang, renders `PortfolioPage`
-- `src/components/PortfolioPage.astro` — the entire page markup (hero, projects, stack, about, contact). Single source of layout.
-- `src/components/ThemeToggle.tsx` — the only React island; toggles `data-theme` on `<html>` and persists to `localStorage`
-- `src/i18n/content.ts` — all copy (PL + EN) in one typed `content` object; `PageContent` type drives the component props
-- `src/styles/global.css` — design system + every component style
+## Tools (installed MCP/plugins — use them)
+- **Serena:** prefer symbol-level reading over reading whole files; use find/references tools when exploring code
+- **Context7:** when unsure about a library/framework API — fetch current docs instead of guessing from memory
+- Never read entire folders; read exact files or symbols
 
-`@/` is the path alias for `src/` (see tsconfig).
-
-## Content — edit here, not in markup
-
-All text lives in `src/i18n/content.ts` under `content.pl` / `content.en`. The two languages **must stay structurally identical** — same keys, same array lengths — because one `PageContent` type serves both. To add/change a project, stack group, etc., edit both `pl` and `en`.
-
-Sections rendered: hero, projects, stack, about, contact. (A `process` block still exists in `content.ts` but is **not rendered** — safe to remove if unused.)
-
-## Design system (mono-grid minimal)
-
-- **Theme**: light (`#faf9f6`) + dark (`#18181b`) via `:root[data-theme]`. Default follows `prefers-color-scheme`; an inline script in `PortfolioPage.astro` `<head>` sets it pre-paint to avoid flash, and `ThemeToggle` overrides + persists.
-- **Color**: single red accent (`--accent`: `#ff4d2e` light / `#ff5a3c` dark). No other accent colors — keep it monochrome + red.
-- **Tokens**: all colors are CSS vars (`--bg --ink --muted --line --line-strong --accent --hover`). Use them; never hardcode hex in component CSS.
-- **Type**: Inter (body) + JetBrains Mono (labels, nav, kickers — anything uppercase/letterspaced). Loaded from Google Fonts in `<head>`.
-- **Visual language**: sharp corners (no border-radius), hairline rules (`--line`), vertical grid lines on `.page` at 25/50/75%, numbered sections (`01`–`04`), index-style project list. Keep it clean and editorial — avoid generic rounded-card "AI" look.
-
-## Conventions
-
-- Layout and styling go in `global.css` with semantic class names, not Tailwind utility soup.
-- Keep React islands minimal — Astro is the default; reach for React only when interactivity truly needs it.
-- Assets in `public/`: CV at `/cv/Piotr_Ponikiewski_cv.pdf`, profile photo at `/images/profile.webp`.
+## Knowledge Base
+- A cross-project knowledge base of solved problems lives OUTSIDE this repo (Obsidian vault: knowledge/). It is not in context by default
+- When you hit a problem that feels like it might have been solved before (encoding, build config, auth flow, env quirks), ASK me to check the KB before solving from scratch

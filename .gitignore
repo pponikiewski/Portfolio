@@ -27,3 +27,15 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+*.pem
+*.key
+*.local
+.claude/settings.local.json
+CLAUDE.local.md
+.next/
+build/
+coverage/
+*.tsbuildinfo
+
+# Claude Code generated/proposed files
+.claude/settings.json.proposed

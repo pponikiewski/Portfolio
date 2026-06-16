@@ -27,7 +27,7 @@ export const content = {
       primaryCta: 'Zobacz projekty',
       secondaryCta: 'Napisz do mnie',
       location: 'Bielsko-Biała, 43-300 · Śląsk',
-      interests: ['#technologia', '#AI', '#gaming'],
+      interests: ['#technologia', '#kosmos', '#nauka', '#sport'],
       typingPhrases: [
         'offline-first sync z outboxem i LWW merge',
         'multi-tenant workspace, role i zaproszenia',
@@ -88,18 +88,36 @@ export const content = {
         ],
       },
       {
-        name: 'Deep Prompt',
+        name: 'Budgie',
         status: 'In progress',
-        kind: 'AI / Education',
+        kind: 'Desktop',
         description:
-          'Polska platforma edukacyjna o prompt engineeringu. Lekcje w MDX, interaktywne moduły i narzędzia AI do optymalizacji promptów.',
-        stack: ['Next.js 16', 'TypeScript', 'MDX', 'Vercel AI SDK', 'OpenRouter', 'Tailwind'],
+          'Desktopowa aplikacja do domowego budżetu: przychody, wydatki, kategorie i bilans na żywo. Dane trzymane lokalnie w SQLite — działa offline, bez konta.',
+        stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Streaming AI w optymalizatorze promptów i kreatorze mega-promptów',
-          'Lekcje oparte na MDX i statycznym generowaniu',
-          'Łączy wiedzę, narzędzia i praktykę pracy z AI',
+          'Przychody i wydatki z kategoriami zależnymi od typu wpisu',
+          'Bilans na żywo, filtrowanie po miesiącu i zestawienie według kategorii',
+          'Lokalne dane w SQLite — działa offline, bez konta i bez serwera',
         ],
-        links: [],
+        links: [
+          { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
+        ],
+      },
+    ],
+    moreProjects: [
+      {
+        name: 'TokenForge',
+        status: 'Released',
+        kind: 'Web / Tool',
+        description:
+          'Przeglądarkowe narzędzie do tworzenia tokenów RPG i VTT: kształty, ramki dekoracyjne i eksport do PNG. Działa bez instalacji.',
+        stack: ['React', 'TypeScript', 'Konva', 'Tailwind CSS'],
+        highlights: [
+          '7 stylów ramek i wiele kształtów tokenów',
+          'Eksport PNG w wielu rozdzielczościach',
+          'Dwujęzyczny interfejs (PL / EN)',
+        ],
+        links: [] as { label: string; href: string }[],
       },
     ],
     process: {
@@ -160,9 +178,16 @@ export const content = {
     },
     about: {
       kicker: 'O mnie',
-      title: 'Jestem full-stack developerem skupionym na realnych aplikacjach.',
+      lead: 'Inżynier informatyki na finiszu studiów (obrona 2026), full-stack developer z Bielska-Białej.',
       text:
-        'Najbardziej kręcą mnie projekty, w których trzeba połączyć myślenie produktowe z techniczną robotą: dane, logika, interfejs i wdrożenie. Lubię nowe technologie, zwłaszcza AI, ale patrzę na nie przez praktyczne zastosowanie.',
+        'Programowanie wciągnęło mnie, bo mogę zbudować dokładnie to, czego potrzebuję, po swojemu i z pełną dowolnością. Od pomysłu po działającą aplikację, sam decyduję jak ma wyglądać i działać. Poza kodem ciekawi mnie technologia, kosmos i ogólnie nauka, lubię rozumieć, jak rzeczy działają od środka. Dbam też o zdrowie i sport, bo to trzyma głowę w dobrym rytmie.',
+      facts: [
+        ['Edukacja', 'Inż. informatyki, WSIiZ Bielsko-Biała (obrona 2026) · Technik informatyk'],
+        ['Doświadczenie', 'Praktyka C# w Code Town · własne projekty full-stack'],
+        ['Języki', 'Polski natywnie · Angielski C1 · Niemiecki A2'],
+        ['Dostępność', 'Bielsko-Biała, otwarty na zdalnie i hybrydę'],
+      ],
+      looking: 'Szukam pierwszej pełnej roli: junior full-stack, frontend albo backend.',
     },
     contact: {
       kicker: 'Kontakt',
@@ -264,18 +289,36 @@ export const content = {
         ],
       },
       {
-        name: 'Deep Prompt',
+        name: 'Budgie',
         status: 'In progress',
-        kind: 'AI / Education',
+        kind: 'Desktop',
         description:
-          'A Polish prompt engineering education platform with MDX lessons, interactive modules and AI tools for prompt optimization.',
-        stack: ['Next.js 16', 'TypeScript', 'MDX', 'Vercel AI SDK', 'OpenRouter', 'Tailwind'],
+          'A desktop personal budget app: income, expenses, categories and a live balance. Data stored locally in SQLite — works offline, no account needed.',
+        stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Streaming AI for prompt optimizer and mega-prompt wizard',
-          'MDX-based content lessons with static generation',
-          'Educational product combining knowledge, tools and AI practice',
+          'Income and expense entries with type-dependent categories',
+          'Live balance, month filtering and per-category breakdown',
+          'Local SQLite storage — works offline, no account or server needed',
         ],
-        links: [],
+        links: [
+          { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
+        ],
+      },
+    ],
+    moreProjects: [
+      {
+        name: 'TokenForge',
+        status: 'Released',
+        kind: 'Web / Tool',
+        description:
+          'A browser-based tool for creating RPG and VTT tokens: shapes, decorative frames and PNG export. No installation required.',
+        stack: ['React', 'TypeScript', 'Konva', 'Tailwind CSS'],
+        highlights: [
+          '7 frame styles and multiple token shapes',
+          'PNG export at multiple resolutions',
+          'Bilingual interface (PL / EN)',
+        ],
+        links: [] as { label: string; href: string }[],
       },
     ],
     process: {
@@ -336,9 +379,16 @@ export const content = {
     },
     about: {
       kicker: 'About',
-      title: 'I am a full-stack developer focused on real applications.',
+      lead: 'Computer science engineer wrapping up my degree (defense in 2026), full-stack developer from Bielsko-Biała.',
       text:
-        'I am most interested in projects where product thinking meets technical responsibility: data, logic, interface, deployment and maintenance. I like new technologies, especially AI, but I evaluate them through practical use.',
+        'Programming pulled me in because I can build exactly what I need, my own way and with full freedom. From an idea to a working app, I decide how it looks and behaves. Beyond code I am curious about technology, space and science in general, I like understanding how things work under the hood. I also care about health and sport, it keeps my head in a good rhythm.',
+      facts: [
+        ['Education', 'BEng Computer Science, WSIiZ Bielsko-Biała (defense 2026) · IT Technician'],
+        ['Experience', 'C# at Code Town · own full-stack projects'],
+        ['Languages', 'Polish native · English C1 · German A2'],
+        ['Availability', 'Bielsko-Biała, open to remote and hybrid'],
+      ],
+      looking: 'Looking for my first full role: junior full-stack, frontend or backend.',
     },
     contact: {
       kicker: 'Contact',
