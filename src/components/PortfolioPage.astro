@@ -73,7 +73,7 @@ const lastName = restName.join(' ')
               <div class="telem-row">
                 <span class="tk">{row.k}</span>
                 {'kind' in row && row.kind === 'clock' ? (
-                  <span class="tv g" id="tele-clock">{row.v}</span>
+                  <span class="tv" id="tele-clock">{row.v}</span>
                 ) : 'kind' in row && row.kind === 'green' ? (
                   <span class="tv g">{row.v}</span>
                 ) : 'kind' in row && row.kind === 'accent' ? (
