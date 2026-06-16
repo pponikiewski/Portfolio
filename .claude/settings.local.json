@@ -21,7 +21,21 @@
       "WebSearch",
       "WebFetch(domain:shadcn-map.vercel.app)",
       "WebFetch(domain:www.mapcn.dev)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(cmd /c dir \"D:\\\\Projects\\\\token-creator\" 2>nul)",
+      "Bash(bash \"C:/Users/sitka/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/brainstorming/scripts/start-server.sh\" --project-dir \"D:/Projects/token-creator\")",
+      "Bash(npm create *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(rtk npm *)",
+      "Read(//tmp/**)",
+      "Bash(cmd /c dir \"D:\\\\Projects\\\\Portfolio\\\\.preview-tokenforge\\\\package.json\")",
+      "PowerShell($j=\"D:\\\\Projects\\\\Portfolio\\\\.preview-tokenforge\"; if \\(Test-Path $j\\) { \\(Get-Item $j\\).Delete\\(\\); \"removed\" } else { \"already gone\" }; \"exists now: \" + \\(Test-Path $j\\))",
+      "mcp__obsidian__list_allowed_directories",
+      "PowerShell($roots = @\\(\"C:\\\\Users\\\\sitka\",\"D:\\\\\",\"C:\\\\Users\\\\sitka\\\\Documents\",\"C:\\\\Users\\\\sitka\\\\OneDrive\"\\); foreach \\($r in $roots\\) { if \\(Test-Path $r\\) { Get-ChildItem -Path $r -Recurse -Directory -Filter \".obsidian\" -ErrorAction SilentlyContinue -Depth 4 | Select-Object -ExpandProperty Parent | Select-Object -ExpandProperty FullName } })",
+      "PowerShell($p = \"D:\\\\obsidian\\\\pponikiewski\\\\.obsidian\"; if \\(Test-Path \"$p\\\\plugins\\\\obsidian-local-rest-api\"\\) { Write-Output \"PLUGIN INSTALLED\" } else { Write-Output \"PLUGIN MISSING\" }; Write-Output \"--- community-plugins.json ---\"; if \\(Test-Path \"$p\\\\community-plugins.json\"\\) { Get-Content \"$p\\\\community-plugins.json\" } else { Write-Output \"none\" }; Write-Output \"--- obsidian process ---\"; $proc = Get-Process Obsidian -ErrorAction SilentlyContinue; if \\($proc\\) { Write-Output \"RUNNING\" } else { Write-Output \"NOT RUNNING\" })",
+      "PowerShell([System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $key = \"7aa6798525da5f2ba8ac5a3d052ee9172e2b42eb676a7179a92bedc8d1442c08\"; try { $r = Invoke-WebRequest -Uri \"https://127.0.0.1:27124/\" -Headers @{Authorization=\"Bearer $key\"} -UseBasicParsing -TimeoutSec 5; Write-Output \\(\"HTTPS OK status=\" + $r.StatusCode\\); Write-Output $r.Content } catch { Write-Output \\(\"HTTPS FAIL: \" + $_.Exception.Message\\) })",
+      "PowerShell($env:OBSIDIAN_API_KEY=\"7aa6798525da5f2ba8ac5a3d052ee9172e2b42eb676a7179a92bedc8d1442c08\"; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; $job = Start-Job { $env:OBSIDIAN_API_KEY=$using:env:OBSIDIAN_API_KEY; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; npx -y mcp-obsidian 2>&1 }; Start-Sleep 18; Receive-Job $job; Stop-Job $job; Remove-Job $job -Force)",
+      "mcp__obsidian__vault_list"
     ]
   }
 }

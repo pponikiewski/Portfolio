@@ -293,7 +293,7 @@ const lastName = restName.join(' ')
         <!-- CONTACT -->
         <section id="contact" class="contact-wrap">
           <div class="sec-head"><span class="num">04</span><h2>{page.contact.kicker}</h2></div>
-          <h3 class="contact-big">{page.contact.title}</h3>
+          <h3 class="contact-big" set:html={page.contact.title}></h3>
           <p class="contact-text">{page.contact.text}</p>
           <a class="contact-row" href={`mailto:${page.contact.email}`}>
             <span class="ck">Email</span>

@@ -21,3 +21,4 @@ updated: 2026-06-16
 
 ## Status
 - 2026-06-16 — projekty zaktualizowane: Deep Prompt → Budgie; dodano sekcję "więcej projektów" z toggle
+- 2026-06-16 — sekcja About ukończona: zdjęcie, bio, edukacja, hero lead (PL+EN); scroll-reveal, polish UI; plan COMPLETED

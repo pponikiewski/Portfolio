@@ -44,7 +44,7 @@ export const content = {
         { k: 'status', v: '● otwarty na pracę', kind: 'green' },
         { k: 'focus', v: 'full-stack · AI', kind: 'accent' },
         { k: 'stack', v: 'React · Tauri · Rust' },
-        { k: 'projekty', v: '3+ wdrożone' },
+        { k: 'projekty', v: '3+' },
       ],
     },
     projectsIntro: {
@@ -182,13 +182,13 @@ export const content = {
         ['Języki', 'Polski natywnie · Angielski C1 · Niemiecki A2'],
         ['Dostępność', 'Bielsko-Biała · otwarty na pracę hybrydową/zdalną'],
       ],
-      looking: 'Szukam pierwszej pełnej roli: junior full-stack, frontend albo backend.',
+      looking: 'Szukam pierwszej pełnej roli jako Full-stack Developer.',
     },
     contact: {
       kicker: 'Kontakt',
-      title: 'Masz rolę, projekt albo pomysł do sprawdzenia?',
+      title: 'Napisz, jeśli szukasz kogoś do <em>zespołu</em> albo masz projekt.',
       text:
-        'Najprościej napisać maila albo złapać mnie na LinkedIn. CV jest dostępne w PDF.',
+        'Odpisuję na maile i wiadomości na LinkedIn. CV poniżej.',
       email: 'p.ponikiewski7@gmail.com',
       github: 'GitHub',
       githubHref: 'https://github.com/pponikiewski',
@@ -240,7 +240,7 @@ export const content = {
         { k: 'status', v: '● open to work', kind: 'green' },
         { k: 'focus', v: 'full-stack · AI', kind: 'accent' },
         { k: 'stack', v: 'React · Tauri · Rust' },
-        { k: 'projects', v: '3+ shipped' },
+        { k: 'projects', v: '3+' },
       ],
     },
     projectsIntro: {
@@ -378,13 +378,13 @@ export const content = {
         ['Languages', 'Polish native · English C1 · German A2'],
         ['Availability', 'Bielsko-Biała · open to hybrid/remote work'],
       ],
-      looking: 'Looking for my first full role: junior full-stack, frontend or backend.',
+      looking: 'Looking for my first full role as a Full-stack Developer.',
     },
     contact: {
       kicker: 'Contact',
-      title: 'Have a role, project or idea worth testing?',
+      title: 'Reach out if you have a <em>role</em> or a project in mind.',
       text:
-        'The easiest way is to email me or reach out on LinkedIn. My CV is available as a PDF.',
+        'I reply to emails and LinkedIn messages. CV below.',
       email: 'p.ponikiewski7@gmail.com',
       github: 'GitHub',
       githubHref: 'https://github.com/pponikiewski',

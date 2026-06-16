@@ -1,3 +1,12 @@
 # portfolio — Session Notes
 <!-- One line per commit, appended via /sync: date | commit subject | what/why -->
+- 2026-06-16 | fix(css): apply wide-screen width tokens in light theme | Poprawiono tokeny szerokości dla jasnego motywu na szerokich ekranach
+- 2026-06-16 | feat(ui): scroll-reveal animations and hover polish | Dodano animacje scroll-reveal i dopracowano efekty hover
+- 2026-06-16 | feat(content): capability-line stack, human copy, scroll fix | Przepisano copy na bardziej ludzkie; dodano linię capability w stacku; fix scrollowania
 - 2026-06-16 | feat(content): replace Deep Prompt with Budgie, add more-projects toggle | Zastąpiono projekt Deep Prompt projektem Budgie (Tauri 2 desktop budget app); dodano sekcję "więcej projektów" z przyciskiem toggle i TokenForge jako przykład
+- 2026-06-16 | fix(content): remove em dashes, strip stack blurbs, rename stack heading | Usunięto myślniki em, opisy przy stacku, zmieniono nagłówek sekcji
+- 2026-06-16 | feat(about): update hero lead, about texts, education, remove photo caption | Zaktualizowano hero lead, teksty about (PL+EN), dane edukacji; usunięto figcaption z about
+- 2026-06-16 | fix(hero): shorten lead, fix telemetry focus/projects/clock color | Skrócono hero lead; poprawiono kolory w sekcjach telemetry/focus/projects/clock
+- 2026-06-16 | fix(hero): update typing phrases to match current projects | Zaktualizowano animowane frazy w hero żeby odzwierciedlały aktualne projekty
+- 2026-06-16 | fix(stack): more breathing room, bigger tags, ink color default | Więcej odstępów w stacku, większe tagi, domyślny kolor ink
+- 2026-06-16 | feat(about): photo 1.jpg, Full-stack Developer heading, two-paragraph bio | Dodano zdjęcie profilowe, nagłówek "Full-stack Developer", dwuakapitowe bio

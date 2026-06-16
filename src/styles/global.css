@@ -834,8 +834,13 @@ section {
   display: grid;
   grid-template-columns: 130px 1fr;
   gap: 16px;
-  padding: 11px 0;
+  padding: 12px 0;
   border-bottom: 1px dashed var(--line);
+  transition: background 0.15s ease;
+}
+
+.about-facts .fact:hover {
+  background: var(--hover);
 }
 
 .about-facts dt {
@@ -847,11 +852,39 @@ section {
   padding-top: 2px;
 }
 
-.about-facts dt:empty { display: none; }
-.about-facts .fact:has(dt:empty) {
-  padding-top: 2px;
-  padding-bottom: 6px;
+/* Labeled row followed by a continuation: open the group (no separator yet) */
+.about-facts .fact:has(+ .fact:has(dt:empty)) {
   border-bottom: none;
+  padding-bottom: 3px;
+}
+
+/* Continuation row: closes the group with the normal separator */
+.about-facts .fact:has(dt:empty) {
+  padding-top: 3px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line);
+}
+
+/* Empty dt: render a continuation glyph instead of hiding */
+.about-facts dt:empty {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1px;
+}
+
+.about-facts dt:empty::before {
+  content: '└';
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.4;
+  line-height: 1.4;
+}
+
+/* Continuation value: slightly muted to indicate it's a sub-entry */
+.about-facts .fact:has(dt:empty) dd {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .about-facts dd {
@@ -900,15 +933,16 @@ section {
 
 /* ============ CONTACT ============ */
 .contact-wrap {
-  padding-bottom: 60px;
+  padding-bottom: 80px;
   border-bottom: 0;
 }
 
 .contact-big {
-  font-size: clamp(1.8rem, 5vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin: 0 0 14px;
+  font-size: clamp(2rem, 5.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+  margin: 0 0 16px;
   color: var(--ink);
 }
 
@@ -918,29 +952,32 @@ section {
 }
 
 .contact-text {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
-  margin: 0 0 24px;
+  margin: 0 0 32px;
   max-width: 460px;
 }
 
 .contact-row {
   display: grid;
-  grid-template-columns: 140px 1fr 30px;
-  gap: 18px;
+  grid-template-columns: 110px 1fr 28px;
+  gap: 16px;
   align-items: center;
-  padding: 16px 0;
-  border-top: 1px dashed var(--line-strong);
-  transition: padding-left 0.25s ease, background 0.2s ease;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-strong);
+  transition: padding-left 0.3s cubic-bezier(0.2, 0.6, 0.2, 1),
+              background 0.2s ease,
+              box-shadow 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
 .contact-row:last-child {
-  border-bottom: 1px dashed var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .contact-row:hover {
-  padding-left: 12px;
+  padding-left: 14px;
   background: var(--hover);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .contact-row .ck {
@@ -960,6 +997,15 @@ section {
   text-align: right;
   font-size: 16px;
   color: var(--accent);
+  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.contact-row:hover .ca {
+  transform: translateX(3px) translateY(-3px);
+}
+
+.contact-row:last-child:hover .ca {
+  transform: translateY(4px);
 }
 
 /* ============ FOOTER ============ */
