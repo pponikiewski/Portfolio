@@ -27,18 +27,20 @@ const { project, index } = Astro.props
     <ul class="proj-highlights">
       {project.highlights.map((highlight) => <li>{highlight}</li>)}
     </ul>
-    <div class="proj-stack">
-      {project.stack.map((item) => <span>{item}</span>)}
-    </div>
-    {project.links.length > 0 && (
-      <div class="proj-links">
-        {project.links.map((link) => (
-          <a href={link.href} target="_blank" rel="noreferrer">
-            {link.label}<ArrowUpRight size={13} />
-          </a>
-        ))}
+    <div class="proj-footer">
+      <div class="proj-stack">
+        {project.stack.map((item) => <span>{item}</span>)}
       </div>
-    )}
+      {project.links.length > 0 && (
+        <div class="proj-links">
+          {project.links.map((link) => (
+            <a href={link.href} target="_blank" rel="noreferrer">
+              {link.label}<ArrowUpRight size={13} />
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   </div>
   <div class="proj-right">
     <div class="proj-status">{project.status}</div>

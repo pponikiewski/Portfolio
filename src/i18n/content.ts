@@ -1,4 +1,4 @@
-export const languages = ['pl', 'en'] as const
+﻿export const languages = ['pl', 'en'] as const
 
 export type Lang = (typeof languages)[number]
 
@@ -50,8 +50,7 @@ export const content = {
     projectsIntro: {
       kicker: 'Wybrane projekty',
       title: 'Nie tylko interfejsy. Kompletne systemy z realnym zakresem.',
-      text:
-        'Projekty pokazuje przez problem, decyzje techniczne i status. Screeny zostana podmienione po przygotowaniu finalnych materialow.',
+      text: 'Każdy projekt prezentuję przez problem, decyzje techniczne i aktualny status.',
     },
     projects: [
       {
@@ -59,12 +58,12 @@ export const content = {
         status: 'Released',
         kind: 'Desktop / SaaS',
         description:
-          'Desktopowa aplikacja do mierzenia czasu pracy w zespołach. Lokalna baza SQLite, synchronizacja z chmurą, workspace’y, role i auto-updater.',
+          'Cross-platform time-tracker dla zespołów zbudowany na Tauri 2 + Rust. Architektura offline-first z lokalnym SQLite jako źródłem prawdy i asynchroniczną synchronizacją z Supabase przez kolejkę outbox.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Supabase', 'Rust'],
         highlights: [
-          'Tryb offline-first z outboxem i scalaniem LWW',
-          'Wiele workspace’ów, role i zaproszenia do zespołu',
-          'Podpisany auto-updater i wydania przez GitHub Releases',
+          'Outbox pattern z LWW merge, zapis lokalny gwarantuje pracę bez połączenia, konflikty rozwiązywane deterministycznie po powrocie do sieci',
+          'Multi-tenant RBAC: izolacja workspace\'ów na poziomie Row-Level Security w Postgres, zaproszenia tokenem jednorazowym',
+          'Kod natywny w Rust (side-car) obsługuje podpisany auto-updater i dystrybucję przez GitHub Releases',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/tracker' },
@@ -76,12 +75,12 @@ export const content = {
         status: 'MVP / rozwijany',
         kind: 'Web / PWA',
         description:
-          'Aplikacja webowa do zarządzania grupami Żywego Różańca: członkowie, roty tajemnic, intencje miesięczne, panel administratora i użytkownika.',
+          'PWA do zarządzania grupami modlitewnymi zbudowana na React 19 + Supabase. Kluczowy problem domenowy, deterministyczna rotacja pozycji w grupie, rozwiązany jako czysta funkcja ze snapshotu stanu, testowalny bez UI.',
         stack: ['React 19', 'TypeScript', 'Vite', 'Supabase', 'PWA', 'Playwright'],
         highlights: [
-          'Automatyczna rotacja tajemnic i logika pozycji w grupie',
-          'Role, logowanie i bezpieczny dostęp przez RLS',
-          'Architektura feature-based oraz testy jednostkowe i e2e',
+          'Algorytm rotacji tajemnic jako izolowana pure function, niezależna od warstwy danych, pokryta testami jednostkowymi',
+          'Autoryzacja oparta o Row-Level Security: polityki Supabase jako jedyne enforcement boundary, bez dodatkowego middleware',
+          'Architektura feature-based z Playwright e2e na krytycznych ścieżkach (logowanie, rotacja, zaproszenia)',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/roza-rozancowa' },
@@ -92,12 +91,12 @@ export const content = {
         status: 'In progress',
         kind: 'Desktop',
         description:
-          'Desktopowa aplikacja do domowego budżetu: przychody, wydatki, kategorie i bilans na żywo. Dane trzymane lokalnie w SQLite, działa offline, bez konta.',
+          'Lokalny menedżer budżetu domowego na Tauri 2 z gwarancją privacy-by-design: żadne dane nie opuszczają dysku użytkownika. Persistence przez SQLite z type-safe schematem Drizzle ORM i automatycznymi migracjami przy starcie.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Schema Drizzle ORM w TypeScript — migracje bez ręcznego SQL',
-          'Kategorie zależne od typu wpisu: osobny zestaw dla przychodów i wydatków',
-          'Zero rejestracji, zero chmury — dane nigdy nie opuszczają dysku użytkownika',
+          'Drizzle ORM jako single source of truth dla schematu, migracje generowane z TypeScript, zero ręcznego SQL',
+          'Discriminated union dla typów wpisów: osobne zestawy kategorii dla przychodów i wydatków wymuszane na poziomie typów',
+          'Zero network dependencies w runtime, Tauri IPC jako jedyna granica między UI a warstwą danych',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
@@ -229,8 +228,7 @@ export const content = {
     projectsIntro: {
       kicker: 'Selected projects',
       title: 'Not only interfaces. Complete systems with real scope.',
-      text:
-        'Projects are presented through the problem, technical decisions and status. Screenshots will replace placeholders later.',
+      text: 'Each project is presented through the problem it solves, the technical decisions made, and current status.',
     },
     projects: [
       {
@@ -238,12 +236,12 @@ export const content = {
         status: 'Released',
         kind: 'Desktop / SaaS',
         description:
-          'A desktop time-tracking app for teams, with local SQLite storage, cloud sync, workspaces, roles and an auto-updater.',
+          'Cross-platform time-tracker for teams built on Tauri 2 + Rust. Offline-first architecture with local SQLite as the source of truth and async sync to Supabase via an outbox queue.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Supabase', 'Rust'],
         highlights: [
-          'Offline-first mirror with outbox and LWW merge',
-          'Multi-tenant workspaces, roles and invite links',
-          'Signed auto-updater and GitHub Releases delivery flow',
+          'Outbox pattern with LWW merge, local writes guarantee operation without connectivity; conflicts resolved deterministically on reconnect',
+          'Multi-tenant RBAC: workspace isolation enforced via Postgres Row-Level Security policies; invitations via single-use tokens',
+          'Rust side-car handles code-signed auto-updates and GitHub Releases delivery',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/tracker' },
@@ -255,12 +253,12 @@ export const content = {
         status: 'MVP / evolving',
         kind: 'Web / PWA',
         description:
-          'A web app for managing Living Rosary groups: members, mystery rotation, monthly intentions, admin panel and user panel.',
+          'PWA for managing prayer groups built on React 19 + Supabase. The core domain problem, deterministic member position rotation, is modelled as a pure function over a state snapshot, testable without UI.',
         stack: ['React 19', 'TypeScript', 'Vite', 'Supabase', 'PWA', 'Playwright'],
         highlights: [
-          'Automatic mystery rotation and group-position logic',
-          'Roles, authentication and secure access through RLS',
-          'Feature-based architecture with unit and e2e tests',
+          'Rotation algorithm as an isolated pure function, decoupled from the data layer and covered by unit tests',
+          'Authorization via Row-Level Security: Supabase policies are the sole enforcement boundary, no additional middleware',
+          'Feature-based architecture with Playwright e2e coverage on critical paths (auth, rotation, invitations)',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/roza-rozancowa' },
@@ -271,12 +269,12 @@ export const content = {
         status: 'In progress',
         kind: 'Desktop',
         description:
-          'A desktop personal budget app: income, expenses, categories and a live balance. Data stored locally in SQLite, works offline, no account needed.',
+          'Privacy-by-design personal budget manager on Tauri 2: no data ever leaves the user\'s disk. Persistence through SQLite with a type-safe Drizzle ORM schema and automatic migrations on startup.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Drizzle ORM schema in TypeScript — migrations without hand-written SQL',
-          'Type-dependent categories: separate sets for income and expense entries',
-          'Zero sign-up, zero cloud — data never leaves the user\'s disk',
+          'Drizzle ORM as single source of truth for schema, migrations generated from TypeScript, zero hand-written SQL',
+          'Discriminated union for entry types: separate category sets for income vs. expense enforced at the type level',
+          'Zero network dependencies at runtime, Tauri IPC is the only boundary between UI and the data layer',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },

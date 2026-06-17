@@ -449,7 +449,7 @@ section {
   display: grid;
   grid-template-columns: 40px 1fr auto;
   gap: 18px;
-  align-items: baseline;
+  align-items: start;
   padding: 22px 0;
   border-top: 1px dashed var(--line-strong);
   transition: padding-left 0.25s ease, background 0.2s ease;
@@ -468,6 +468,7 @@ section {
   font-family: 'Commit Mono', ui-monospace, monospace;
   font-size: 12px;
   color: var(--muted);
+  padding-top: 5px;
 }
 
 .proj-name {
@@ -488,7 +489,8 @@ section {
   font-size: 13px;
   color: var(--muted);
   margin-top: 6px;
-  max-width: 460px;
+  max-width: 560px;
+  line-height: 1.65;
 }
 
 .proj-highlights {
@@ -496,7 +498,7 @@ section {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 3px;
+  gap: 5px;
 }
 
 .proj-highlights li {
@@ -504,6 +506,7 @@ section {
   color: var(--muted);
   padding-left: 14px;
   position: relative;
+  line-height: 1.6;
 }
 
 .proj-highlights li::before {
@@ -513,10 +516,17 @@ section {
   color: var(--accent);
 }
 
-.proj-stack {
-  margin-top: 10px;
+.proj-footer {
+  margin-top: 14px;
   display: flex;
-  gap: 14px;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.proj-stack {
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -526,12 +536,15 @@ section {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+  background: var(--hover);
+  border: 1px solid var(--line-strong);
+  padding: 3px 8px;
+  border-radius: 3px;
 }
 
 .proj-links {
-  margin-top: 12px;
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
 .proj-links a {
@@ -548,6 +561,20 @@ section {
 
 .proj-links a:hover { gap: 8px; }
 
+.proj-right {
+  text-align: right;
+  white-space: nowrap;
+  padding-top: 5px;
+}
+
+.proj-status {
+  font-family: 'Commit Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .proj-more-wrap {
   padding: 24px 0 8px;
   display: flex;
@@ -557,19 +584,6 @@ section {
 .proj-more-btn {
   font-size: 13px;
   padding: 8px 20px;
-}
-
-.proj-right {
-  text-align: right;
-  white-space: nowrap;
-}
-
-.proj-status {
-  font-family: 'Commit Mono', ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
 }
 
 /* ============ STACK ============ */
@@ -1053,7 +1067,7 @@ html {
   .proj-right {
     grid-column: 2;
     text-align: left;
-    margin-top: 6px;
+    padding-top: 4px;
   }
 }
 

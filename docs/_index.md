@@ -25,3 +25,4 @@ updated: 2026-06-17
 - 2026-06-16 — sekcja About ukończona: zdjęcie, bio, edukacja, hero lead (PL+EN); scroll-reveal, polish UI; plan COMPLETED
 - 2026-06-16 — hero system readout responsywny: zamiast display:none na ≤900px, blok stackuje się poniżej contentu (flex column + order)
 - 2026-06-17 — audit UX ukończony: stack 6 grup single-column, Code Town w faktach, Budgie highlights unikalne, TokenForge usunięty, system readout z typewriter dots, navbar uproszczony
+- 2026-06-17 — opisy projektów przepisane na techniczne (architektura, wzorce); stack jako badges; em-dashes usunięte; linki wyrównane z tagami

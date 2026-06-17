@@ -140,7 +140,7 @@ const lastName = restName.join(' ')
             <>
               <div id="more-projects-list">
                 {page.moreProjects.map((project, index) => (
-                  <ProjectRow project={project} index={page.projects.length + index} />
+                  <ProjectRow project={project} index={page.projects.length + index} client:load />
                 ))}
               </div>
 
