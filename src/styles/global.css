@@ -297,7 +297,10 @@ section {
 /* ============ HERO ============ */
 .hero {
   position: relative;
-  padding: 70px 0 60px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
   animation: fade-up 0.6s ease-out both;
 }
 
@@ -1101,4 +1104,37 @@ html {
     flex-direction: column;
     gap: 6px;
   }
+}
+
+/* ============ SCROLL ARROW (down ↔ up) ============ */
+#scroll-arrow {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  z-index: 50;
+}
+
+#scroll-arrow svg {
+  transition: transform 0.3s ease;
+}
+
+#scroll-arrow.is-bottom svg {
+  transform: rotate(180deg);
+}
+
+#scroll-arrow:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }

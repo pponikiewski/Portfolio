@@ -154,9 +154,8 @@ export const content = {
       kicker: 'O mnie',
       lead: 'Full-stack Developer',
       text:
-        'Buduję aplikacje fullstack w TypeScript. Interesuję się AI i wdrażam ją w praktyce: automatyzacje, narzędzia wspomagające pracę, szybsze prototypowanie.',
-      text2:
-        'Chętnie sięgam po nowe rzeczy i staram się rozumieć to, czego używam. Poza kodem ciekawi mnie technologia, kosmos i nauka ogólnie.',
+        'Buduję aplikacje fullstack w TypeScript. Interesuję się AI i wdrażam ją w praktyce: automatyzacje, narzędzia wspomagające pracę, szybsze prototypowanie. Chętnie sięgam po nowe rzeczy i staram się rozumieć to, czego używam. Poza kodem ciekawi mnie technologia, kosmos i nauka ogólnie.',
+      text2: '',
       facts: [
         ['Edukacja', 'Inżynier Informatyki, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'Technik Informatyk, ZSEEiM Bielsko-Biała (2017–2021)'],
@@ -332,9 +331,8 @@ export const content = {
       kicker: 'About',
       lead: 'Full-stack Developer',
       text:
-        'I build fullstack apps in TypeScript. I use AI in practice: automation, dev tooling, faster prototyping.',
-      text2:
-        'I like picking up new things and try to understand what I use. Beyond code I am curious about technology, space and science in general.',
+        'I build fullstack apps in TypeScript. I use AI in practice: automation, dev tooling, faster prototyping. I like picking up new things and try to understand what I use. Beyond code I am curious about technology, space and science in general.',
+      text2: '',
       facts: [
         ['Education', 'BEng Computer Science, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'IT Technician, ZSEEiM Bielsko-Biała (2017–2021)'],
