@@ -95,31 +95,16 @@ export const content = {
           'Desktopowa aplikacja do domowego budżetu: przychody, wydatki, kategorie i bilans na żywo. Dane trzymane lokalnie w SQLite, działa offline, bez konta.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Przychody i wydatki z kategoriami zależnymi od typu wpisu',
-          'Bilans na żywo, filtrowanie po miesiącu i zestawienie według kategorii',
-          'Lokalne dane w SQLite, działa offline, bez konta i bez serwera',
+          'Schema Drizzle ORM w TypeScript — migracje bez ręcznego SQL',
+          'Kategorie zależne od typu wpisu: osobny zestaw dla przychodów i wydatków',
+          'Zero rejestracji, zero chmury — dane nigdy nie opuszczają dysku użytkownika',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
         ],
       },
     ],
-    moreProjects: [
-      {
-        name: 'TokenForge',
-        status: 'Released',
-        kind: 'Web / Tool',
-        description:
-          'Przeglądarkowe narzędzie do tworzenia tokenów RPG i VTT: kształty, ramki dekoracyjne i eksport do PNG. Działa bez instalacji.',
-        stack: ['React', 'TypeScript', 'Konva', 'Tailwind CSS'],
-        highlights: [
-          '7 stylów ramek i wiele kształtów tokenów',
-          'Eksport PNG w wielu rozdzielczościach',
-          'Dwujęzyczny interfejs (PL / EN)',
-        ],
-        links: [] as { label: string; href: string }[],
-      },
-    ],
+    moreProjects: [] as { name: string; status: string; kind: string; description: string; stack: string[]; highlights: string[]; links: { label: string; href: string }[] }[],
     process: {
       kicker: 'Sposob pracy',
       title: 'Buduje od fundamentu, nie od przypadkowego ekranu.',
@@ -136,35 +121,33 @@ export const content = {
       groups: [
         {
           title: 'Frontend',
-          items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
+          tier: 'primary',
+          items: ['React', 'Next.js', 'Tailwind'],
         },
         {
           title: 'Backend / API',
-          items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
+          tier: 'familiar',
+          items: ['Node.js', 'REST API'],
         },
         {
           title: 'Bazy / Dane',
-          items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
-        },
-        {
-          title: 'Data / Analiza',
-          items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
+          tier: 'primary',
+          items: ['PostgreSQL', 'SQLite', 'SQL'],
         },
         {
           title: 'Desktop',
+          tier: 'familiar',
           items: ['Tauri', 'Rust'],
         },
         {
-          title: 'IT admin / Systemy',
-          items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
-        },
-        {
-          title: 'DevOps / Testy',
-          items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
+          title: 'Tools',
+          tier: 'familiar',
+          items: ['Git', 'Docker', 'Excel', 'Word', 'AutoCAD'],
         },
         {
           title: 'AI',
-          items: ['Claude Code', 'Codex', 'OpenRouter'],
+          tier: 'familiar',
+          items: ['Claude Code', 'Cursor', 'Codex', 'OpenRouter'],
         },
       ],
     },
@@ -178,7 +161,7 @@ export const content = {
       facts: [
         ['Edukacja', 'Inżynier Informatyki, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'Technik Informatyk, ZSEEiM Bielsko-Biała (2017–2021)'],
-        ['Doświadczenie', 'Praktyka C# w Code Town · własne projekty full-stack'],
+        ['Doświadczenie', 'Code Town · Praktykant C#'],
         ['Języki', 'Polski natywnie · Angielski C1 · Niemiecki A2'],
         ['Dostępność', 'Bielsko-Biała · otwarty na pracę hybrydową/zdalną'],
       ],
@@ -291,31 +274,16 @@ export const content = {
           'A desktop personal budget app: income, expenses, categories and a live balance. Data stored locally in SQLite, works offline, no account needed.',
         stack: ['Tauri 2', 'React 19', 'TypeScript', 'SQLite', 'Drizzle ORM', 'Tailwind CSS v4'],
         highlights: [
-          'Income and expense entries with type-dependent categories',
-          'Live balance, month filtering and per-category breakdown',
-          'Local SQLite storage, works offline, no account or server needed',
+          'Drizzle ORM schema in TypeScript — migrations without hand-written SQL',
+          'Type-dependent categories: separate sets for income and expense entries',
+          'Zero sign-up, zero cloud — data never leaves the user\'s disk',
         ],
         links: [
           { label: 'GitHub', href: 'https://github.com/pponikiewski/budget' },
         ],
       },
     ],
-    moreProjects: [
-      {
-        name: 'TokenForge',
-        status: 'Released',
-        kind: 'Web / Tool',
-        description:
-          'A browser-based tool for creating RPG and VTT tokens: shapes, decorative frames and PNG export. No installation required.',
-        stack: ['React', 'TypeScript', 'Konva', 'Tailwind CSS'],
-        highlights: [
-          '7 frame styles and multiple token shapes',
-          'PNG export at multiple resolutions',
-          'Bilingual interface (PL / EN)',
-        ],
-        links: [] as { label: string; href: string }[],
-      },
-    ],
+    moreProjects: [] as { name: string; status: string; kind: string; description: string; stack: string[]; highlights: string[]; links: { label: string; href: string }[] }[],
     process: {
       kicker: 'Process',
       title: 'I build from the foundation, not from a random screen.',
@@ -332,35 +300,33 @@ export const content = {
       groups: [
         {
           title: 'Frontend',
-          items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind'],
+          tier: 'primary',
+          items: ['React', 'Next.js', 'Tailwind'],
         },
         {
           title: 'Backend / API',
-          items: ['Node.js', 'FastAPI', 'C# / .NET', 'REST API'],
+          tier: 'familiar',
+          items: ['Node.js', 'REST API'],
         },
         {
-          title: 'Databases / Data',
-          items: ['PostgreSQL', 'SQLite', 'SQL', 'Supabase', 'RLS', 'Edge Functions'],
-        },
-        {
-          title: 'Data / Analytics',
-          items: ['Python', 'pandas', 'NumPy', 'Excel', 'Word'],
+          title: 'Databases',
+          tier: 'primary',
+          items: ['PostgreSQL', 'SQLite', 'SQL'],
         },
         {
           title: 'Desktop',
+          tier: 'familiar',
           items: ['Tauri', 'Rust'],
         },
         {
-          title: 'IT admin / Systems',
-          items: ['Linux', 'Bash', 'PowerShell', 'Windows'],
-        },
-        {
-          title: 'DevOps / Testing',
-          items: ['Git', 'GitHub Actions', 'Docker', 'Playwright'],
+          title: 'Tools',
+          tier: 'familiar',
+          items: ['Git', 'Docker', 'Excel', 'Word', 'AutoCAD'],
         },
         {
           title: 'AI',
-          items: ['Claude Code', 'Codex', 'OpenRouter'],
+          tier: 'familiar',
+          items: ['Claude Code', 'Cursor', 'Codex', 'OpenRouter'],
         },
       ],
     },
@@ -374,7 +340,7 @@ export const content = {
       facts: [
         ['Education', 'BEng Computer Science, WSIiZ Bielsko-Biała (2021–2026)'],
         ['', 'IT Technician, ZSEEiM Bielsko-Biała (2017–2021)'],
-        ['Experience', 'C# at Code Town · own full-stack projects'],
+        ['Experience', 'Code Town · C# Intern'],
         ['Languages', 'Polish native · English C1 · German A2'],
         ['Availability', 'Bielsko-Biała · open to hybrid/remote work'],
       ],

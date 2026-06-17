@@ -1,5 +1,4 @@
 ---
-import { Download } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import ProjectRow from './ProjectRow.astro'
 import type { Lang, PageContent } from '@/i18n/content'
@@ -15,6 +14,7 @@ const profilePath = '/images/1.jpg'
 
 const [firstName, ...restName] = page.hero.name.split(' ')
 const lastName = restName.join(' ')
+
 ---
 
 <!doctype html>
@@ -40,16 +40,13 @@ const lastName = restName.join(' ')
           {page.hero.name}
         </a>
         <nav class="nav" aria-label="Main navigation">
-          <a href="#projects"><span class="nav-num">01</span>{page.nav.projects}</a>
-          <a href="#stack"><span class="nav-num">02</span>{page.nav.stack}</a>
-          <a href="#about"><span class="nav-num">03</span>{page.nav.about}</a>
-          <a href="#contact"><span class="nav-num">04</span>{page.nav.contact}</a>
+          <a href="#projects">{page.nav.projects}</a>
+          <a href="#stack">{page.nav.stack}</a>
+          <a href="#about">{page.nav.about}</a>
+          <a href="#contact">{page.nav.contact}</a>
         </nav>
         <div class="top-actions">
           <a class="lang" href={page.nav.languageHref}>{page.nav.language}</a>
-          <a class="icon-link" href={cvPath} download aria-label={page.nav.cv}>
-            <Download size={16} />
-          </a>
           <ThemeToggle client:load />
         </div>
       </div>
@@ -57,17 +54,12 @@ const lastName = restName.join(' ')
 
     <div class="page">
       <div class="vmid"></div>
-      <span class="bp-coord bp-coord-tl">0,0</span>
-      <span class="bp-coord bp-coord-br">grid · 4col · 1120</span>
-      <span class="bp-plus bp-plus-1">+</span>
-      <span class="bp-plus bp-plus-2">+</span>
-      <span class="bp-plus bp-plus-3">+</span>
       <div class="inner">
 
         <!-- HERO -->
         <section class="hero" style="border-bottom: 0;">
           <div class="hero-telem mono" aria-hidden="true">
-            <div class="telem-hdr">{page.telemetry.heading}</div>
+            <div class="telem-hdr">{page.telemetry.heading}<span class="telem-dots"><span>.</span><span>.</span><span>.</span></span></div>
             {page.telemetry.rows.map((row) => (
               <div class="telem-row">
                 <span class="tk">{row.k}</span>
@@ -123,6 +115,20 @@ const lastName = restName.join(' ')
           import '../scripts/scroll-reveal'
         </script>
 
+        <script is:inline>
+          (function () {
+            const dots = document.querySelectorAll('.telem-dots span');
+            if (!dots.length) return;
+            let n = 0;
+            setInterval(function () {
+              n = (n + 1) % (dots.length + 1);
+              dots.forEach(function (d, i) {
+                d.style.opacity = i < n ? '1' : '0';
+              });
+            }, 500);
+          })();
+        </script>
+
         <!-- PROJECTS -->
         <section id="projects">
           <div class="sec-head"><span class="num">01</span><h2>{page.projectsIntro.kicker}</h2></div>
@@ -130,32 +136,36 @@ const lastName = restName.join(' ')
             <ProjectRow project={project} index={index} />
           ))}
 
-          <div id="more-projects-list">
-            {page.moreProjects.map((project, index) => (
-              <ProjectRow project={project} index={page.projects.length + index} />
-            ))}
-          </div>
+          {page.moreProjects.length > 0 && (
+            <>
+              <div id="more-projects-list">
+                {page.moreProjects.map((project, index) => (
+                  <ProjectRow project={project} index={page.projects.length + index} />
+                ))}
+              </div>
 
-          <div class="proj-more-wrap">
-            <button id="more-projects-btn" class="btn ghost proj-more-btn" aria-expanded="false">
-              {lang === 'pl' ? 'Więcej projektów' : 'More projects'}
-            </button>
-          </div>
+              <div class="proj-more-wrap">
+                <button id="more-projects-btn" class="btn ghost proj-more-btn" aria-expanded="false">
+                  {lang === 'pl' ? 'Więcej projektów' : 'More projects'}
+                </button>
+              </div>
 
-          <script is:inline define:vars={{ labelMore: lang === 'pl' ? 'Więcej projektów' : 'More projects', labelLess: lang === 'pl' ? 'Pokaż mniej' : 'Show less' }}>
-            (function () {
-              const list = document.getElementById('more-projects-list');
-              const btn = document.getElementById('more-projects-btn');
-              if (!list || !btn) return;
-              list.style.display = 'none';
-              btn.addEventListener('click', function () {
-                const open = list.style.display !== 'none';
-                list.style.display = open ? 'none' : 'block';
-                btn.textContent = open ? labelMore : labelLess;
-                btn.setAttribute('aria-expanded', String(!open));
-              });
-            })();
-          </script>
+              <script is:inline define:vars={{ labelMore: lang === 'pl' ? 'Więcej projektów' : 'More projects', labelLess: lang === 'pl' ? 'Pokaż mniej' : 'Show less' }}>
+                (function () {
+                  const list = document.getElementById('more-projects-list');
+                  const btn = document.getElementById('more-projects-btn');
+                  if (!list || !btn) return;
+                  list.style.display = 'none';
+                  btn.addEventListener('click', function () {
+                    const open = list.style.display !== 'none';
+                    list.style.display = open ? 'none' : 'block';
+                    btn.textContent = open ? labelMore : labelLess;
+                    btn.setAttribute('aria-expanded', String(!open));
+                  });
+                })();
+              </script>
+            </>
+          )}
         </section>
 
         <!-- STACK -->
@@ -168,7 +178,6 @@ const lastName = restName.join(' ')
                   <span class="l-idx">{String(i + 1).padStart(2, '0')}</span>
                   <span class="l-title">{group.title}</span>
                 </div>
-
                 <div class="stack-tags">
                   {group.items.map((item) => <span>{item}</span>)}
                 </div>
@@ -242,3 +251,11 @@ const lastName = restName.join(' ')
     </div>
   </body>
 </html>
+
+<style>
+  .telem-dots span {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+</style>

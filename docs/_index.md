@@ -2,7 +2,7 @@
 type: project
 project: portfolio
 status: active
-updated: 2026-06-16
+updated: 2026-06-17
 ---
 
 # 🧠 portfolio
@@ -24,3 +24,4 @@ updated: 2026-06-16
 - 2026-06-16 — projekty zaktualizowane: Deep Prompt → Budgie; dodano sekcję "więcej projektów" z toggle
 - 2026-06-16 — sekcja About ukończona: zdjęcie, bio, edukacja, hero lead (PL+EN); scroll-reveal, polish UI; plan COMPLETED
 - 2026-06-16 — hero system readout responsywny: zamiast display:none na ≤900px, blok stackuje się poniżej contentu (flex column + order)
+- 2026-06-17 — audit UX ukończony: stack 6 grup single-column, Code Town w faktach, Budgie highlights unikalne, TokenForge usunięty, system readout z typewriter dots, navbar uproszczony

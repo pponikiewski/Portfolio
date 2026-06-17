@@ -12,3 +12,4 @@
 - 2026-06-16 | fix(stack): more breathing room, bigger tags, ink color default | Więcej odstępów w stacku, większe tagi, domyślny kolor ink
 - 2026-06-16 | feat(about): photo 1.jpg, Full-stack Developer heading, two-paragraph bio | Dodano zdjęcie profilowe, nagłówek "Full-stack Developer", dwuakapitowe bio
 - 2026-06-16 | fix(hero): stack system readout below content on small screens | Na ≤900px telem przechodzi z position:absolute do flex-child order:1 zamiast display:none
+- 2026-06-17 | feat(audit): portfolio content & UI audit — stack, about, hero, nav | Przepisano stack na 6 grup single-column; usunięto TokenForge; Budgie highlights unikalne; Code Town w tabeli faktów; system readout z animowanymi kropkami (typewriter); usunięto bp-coord spany, numery w navie i przycisk CV; linie tła przyciemnione do 35%
