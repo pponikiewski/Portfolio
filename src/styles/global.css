@@ -74,6 +74,10 @@ body {
   pointer-events: none;
 }
 
+:root[data-theme='light'] .bottom-glow {
+  background: radial-gradient(ellipse 70% 100% at 50% 100%, color-mix(in srgb, var(--accent) 14%, transparent), transparent);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1007,7 +1011,7 @@ section {
 @media (prefers-reduced-motion: no-preference) {
   html.js :is(
     .sec-head, .proj-row, .stack-cell, .about-wrap,
-    .contact-big, .contact-text, .contact-row, .site-footer
+    .contact-big, .contact-text, .contact-row
   ) {
     opacity: 0;
     transform: translateY(24px);
@@ -1017,7 +1021,7 @@ section {
 
   html.js :is(
     .sec-head, .proj-row, .stack-cell, .about-wrap,
-    .contact-big, .contact-text, .contact-row, .site-footer
+    .contact-big, .contact-text, .contact-row
   ).in {
     opacity: 1;
     transform: none;

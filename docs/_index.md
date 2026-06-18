@@ -30,3 +30,4 @@ updated: 2026-06-18
 - 2026-06-18 — hero SVG tło: góry z zachodem słońca (3 warstwy, mask fade, accent glow), pełna szerokość, dark+light mode, responsywne
 - 2026-06-18 — body::after accent glow na dole strony: symetryczne domknięcie do hero, 7% opacity
 - 2026-06-18 — fix scroll jank + footer: overflow-x:clip, pointer-events:none na hero-bg, .bottom-glow przed .inner w DOM
+- 2026-06-18 — fix footer+glow desktop: site-footer usunięty ze scroll-reveal (rootMargin dead-zone bug); glow light-mode 7%→14%

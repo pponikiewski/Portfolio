@@ -1,5 +1,5 @@
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const sel = '.sec-head, .proj-row, .stack-cell, .about-wrap, .contact-big, .contact-text, .contact-row, .site-footer'
+  const sel = '.sec-head, .proj-row, .stack-cell, .about-wrap, .contact-big, .contact-text, .contact-row'
   const targets = Array.from(document.querySelectorAll<HTMLElement>(sel))
 
   if (!('IntersectionObserver' in window) || !targets.length) {
