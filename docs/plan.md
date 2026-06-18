@@ -1,18 +1,13 @@
 STATUS: COMPLETED 2026-06-18
 
-# Plan: Mountain Sunset Hero Background
+# Plan: Fix footer + bottom glow
 
 ## Success criteria
-- [x] A layered mountain SVG (2–3 ranges) is visible behind the hero on all screen widths
-- [x] Gradient sky reads as a recognizable warm sunset (orange/rose/deep blue-purple)
-- [x] h1, .hero-sub, .hero-type, .hero-cta remain comfortably readable over the background (visual check)
-- [x] No layout shift — hero still fills min-height: 100vh, padding unchanged
-- [x] Dark mode: sunset still visible and not jarring
-- [x] pnpm run build passes (no typecheck script)
+- [x] Tekst "Piotr Ponikiewski | Built with Astro" widoczny na dole strony
+- [x] Glow sięga do absolutnej krawędzi strony (edge-to-edge)
+- [x] Glow jest za contentem (nie nakrywa tekstu)
+- [x] pnpm run build przechodzi
 
 ## Scope
-- `src/components/PortfolioPage.astro` — add `<div class="hero-bg">` with inline SVG inside `.hero`
-- `src/styles/global.css` — add `.hero-bg` block + scrim overlay rule
-
-## Approach
-Inline SVG in `.hero-bg` div, absolutely positioned. SVG has a linearGradient sky (orange → rose → deep indigo) and 3 path shapes for mountain layers. Thin scrim div keeps text legible on both themes.
+- `src/components/PortfolioPage.astro` — przenieś .bottom-glow przed .inner
+- `src/styles/global.css` — usuń z-index: -1 z .bottom-glow

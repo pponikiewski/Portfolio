@@ -54,8 +54,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  overflow-x: hidden;
-  position: relative;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font-family: 'Geist Variable', 'Helvetica Neue', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -64,16 +63,15 @@ body {
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-body::after {
-  content: '';
+.bottom-glow {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   height: 480px;
   background: radial-gradient(ellipse 70% 100% at 50% 100%, color-mix(in srgb, var(--accent) 7%, transparent), transparent);
   pointer-events: none;
-  z-index: 0;
 }
 
 a {
@@ -319,6 +317,7 @@ section {
   z-index: 0;
   overflow: hidden;
   display: none;
+  pointer-events: none;
 }
 
 [data-theme="dark"] .hero-bg,
@@ -332,20 +331,6 @@ section {
   display: block;
 }
 
-/* na wąskich ekranach SVG skaluje się do wysokości i góry wychodzą poza kadr —
-   przesuwamy kompozycję w dół żeby sylwetki były zawsze widoczne przy dole hero */
-@media (max-width: 768px) {
-  .hero-bg svg {
-    transform: translateY(12%);
-    transform-origin: center top;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-bg svg {
-    transform: translateY(20%);
-  }
-}
 
 /* dark mode */
 [data-theme="dark"] .hbg-far  { fill: #201d1c; }

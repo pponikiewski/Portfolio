@@ -29,3 +29,4 @@ updated: 2026-06-18
 - 2026-06-17 — hero fullscreen (100vh); unified scroll arrow: section-by-section w dół, obraca się przy footer → przewija na górę
 - 2026-06-18 — hero SVG tło: góry z zachodem słońca (3 warstwy, mask fade, accent glow), pełna szerokość, dark+light mode, responsywne
 - 2026-06-18 — body::after accent glow na dole strony: symetryczne domknięcie do hero, 7% opacity
+- 2026-06-18 — fix scroll jank + footer: overflow-x:clip, pointer-events:none na hero-bg, .bottom-glow przed .inner w DOM
