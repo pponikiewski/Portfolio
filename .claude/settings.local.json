@@ -37,7 +37,10 @@
       "PowerShell($env:OBSIDIAN_API_KEY=\"7aa6798525da5f2ba8ac5a3d052ee9172e2b42eb676a7179a92bedc8d1442c08\"; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; $job = Start-Job { $env:OBSIDIAN_API_KEY=$using:env:OBSIDIAN_API_KEY; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; npx -y mcp-obsidian 2>&1 }; Start-Sleep 18; Receive-Job $job; Stop-Job $job; Remove-Job $job -Force)",
       "mcp__obsidian__vault_list",
       "PowerShell(cd D:\\\\Projects\\\\Portfolio; $content = [System.IO.File]::ReadAllText\\(\"src\\\\i18n\\\\content.ts\"\\); $lines = $content -split \"`n\"; for \\($i = 54; $i -le 70; $i++\\) { Write-Host \"$\\($i+1\\): $\\($lines[$i]\\)\" | Out-String; [byte[]]$bytes = [System.Text.Encoding]::UTF8.GetBytes\\($lines[$i]\\); $nonAscii = $bytes | Where-Object { $_ -gt 127 }; if \\($nonAscii.Count -gt 0\\) { Write-Host \"  NON-ASCII bytes: $\\($nonAscii -join ', '\\)\" } })",
-      "PowerShell(cd D:\\\\Projects\\\\Portfolio; $result = Invoke-WebRequest -Uri \"http://localhost:4321/pl\" -TimeoutSec 5 -UseBasicParsing 2>&1; Write-Host \"Status: $\\($result.StatusCode\\)\"; Write-Host \"Length: $\\($result.Content.Length\\)\")"
+      "PowerShell(cd D:\\\\Projects\\\\Portfolio; $result = Invoke-WebRequest -Uri \"http://localhost:4321/pl\" -TimeoutSec 5 -UseBasicParsing 2>&1; Write-Host \"Status: $\\($result.StatusCode\\)\"; Write-Host \"Length: $\\($result.Content.Length\\)\")",
+      "Bash(not exist *)",
+      "PowerShell(if \\(-not \\(Test-Path \"D:\\\\Projects\\\\Portfolio\\\\docs\"\\)\\) { New-Item -ItemType Directory \"D:\\\\Projects\\\\Portfolio\\\\docs\" })",
+      "Skill(sync)"
     ]
   }
 }
