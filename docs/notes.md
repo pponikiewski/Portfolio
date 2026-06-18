@@ -3,6 +3,7 @@
 - 2026-06-18 | feat(design): subtle accent glow at page bottom | Delikatny radialny glow akcentu na body::after domyka stronę wizualnie symetrycznie do hero
 - 2026-06-18 | fix(scroll+footer): overflow-x clip, pointer-events, footer z-index | overflow-x: hidden→clip na body; pointer-events:none na .hero-bg; .bottom-glow przed .inner w DOM — naprawia scroll jank i zakryty footer
 <!-- One line per commit, appended via /sync: date | commit subject | what/why -->
+- 2026-06-18 | fix(footer+glow): footer niewidoczny na desktopie, glow słaby w light-mode | rootMargin dead-zone uniemożliwiał triggerowanie .in na footer; glow 7%→14% w light-mode
 - 2026-06-16 | chore(fonts): swap Inter→Geist Variable, JetBrains Mono→Commit Mono | Zmieniono czcionki na self-hosted via Fontsource; usunięto Google Fonts (zero external requests)
 - 2026-06-16 | fix(css): apply wide-screen width tokens in light theme | Poprawiono tokeny szerokości dla jasnego motywu na szerokich ekranach
 - 2026-06-16 | feat(ui): scroll-reveal animations and hover polish | Dodano animacje scroll-reveal i dopracowano efekty hover

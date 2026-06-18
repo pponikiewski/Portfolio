@@ -40,7 +40,8 @@
       "PowerShell(cd D:\\\\Projects\\\\Portfolio; $result = Invoke-WebRequest -Uri \"http://localhost:4321/pl\" -TimeoutSec 5 -UseBasicParsing 2>&1; Write-Host \"Status: $\\($result.StatusCode\\)\"; Write-Host \"Length: $\\($result.Content.Length\\)\")",
       "Bash(not exist *)",
       "PowerShell(if \\(-not \\(Test-Path \"D:\\\\Projects\\\\Portfolio\\\\docs\"\\)\\) { New-Item -ItemType Directory \"D:\\\\Projects\\\\Portfolio\\\\docs\" })",
-      "Skill(sync)"
+      "Skill(sync)",
+      "PowerShell(New-Item *)"
     ]
   }
 }
