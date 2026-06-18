@@ -58,6 +58,37 @@ const lastName = restName.join(' ')
 
         <!-- HERO -->
         <section class="hero" style="border-bottom: 0;">
+          <div class="hero-bg" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+              <defs>
+                <radialGradient id="hbg-glow" cx="52%" cy="61%" r="38%">
+                  <stop offset="0%"   stop-color="#ff4d2e" stop-opacity="0.16" />
+                  <stop offset="100%" stop-color="#ff4d2e" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="hbg-sun" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stop-color="#ffb87a" stop-opacity="0.5" />
+                  <stop offset="100%" stop-color="#ff4d2e" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="hbg-fade" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="black" />
+                  <stop offset="35%"  stop-color="black" />
+                  <stop offset="62%"  stop-color="white" />
+                  <stop offset="100%" stop-color="white" />
+                </linearGradient>
+                <mask id="hbg-mask">
+                  <rect width="1920" height="1080" fill="url(#hbg-fade)" />
+                </mask>
+              </defs>
+              <rect width="1920" height="1080" fill="url(#hbg-glow)" />
+              <ellipse cx="998" cy="659" rx="85" ry="58" fill="url(#hbg-sun)" />
+              <line x1="0" y1="660" x2="1920" y2="660" stroke="#ff4d2e" stroke-opacity="0.10" stroke-width="1" />
+              <g mask="url(#hbg-mask)">
+                <path class="hbg-far"  d="M0,1080 L0,620 L90,578 L190,612 L290,528 L390,568 L490,492 L585,534 L670,502 L755,548 L855,466 L950,512 L1005,482 L1075,522 L1160,488 L1265,542 L1365,502 L1460,562 L1560,526 L1660,572 L1755,538 L1845,582 L1920,556 L1920,1080 Z" />
+                <path class="hbg-mid"  d="M0,1080 L0,712 L110,664 L225,696 L345,644 L465,684 L585,622 L705,666 L825,636 L945,670 L1065,640 L1185,676 L1305,650 L1425,686 L1545,660 L1665,696 L1920,670 L1920,1080 Z" />
+                <path class="hbg-near" d="M0,1080 L0,808 L135,762 L270,794 L410,752 L550,784 L690,746 L830,774 L970,750 L1110,778 L1250,758 L1390,784 L1530,764 L1670,790 L1920,774 L1920,1080 Z" />
+              </g>
+            </svg>
+          </div>
           <div class="hero-telem mono" aria-hidden="true">
             <div class="telem-hdr">{page.telemetry.heading}<span class="telem-dots"><span>.</span><span>.</span><span>.</span></span></div>
             {page.telemetry.rows.map((row) => (

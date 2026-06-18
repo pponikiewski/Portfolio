@@ -1,4 +1,5 @@
 # portfolio — Session Notes
+- 2026-06-18 | feat(hero): mountain sunset SVG background, responsive, light+dark | Dodano SVG tło z sylwetkami gór i blaskiem akcentu w hero; spójne z design systemem, wtopione w --bg; zmieniono stack readout z Rust na TypeScript
 <!-- One line per commit, appended via /sync: date | commit subject | what/why -->
 - 2026-06-16 | chore(fonts): swap Inter→Geist Variable, JetBrains Mono→Commit Mono | Zmieniono czcionki na self-hosted via Fontsource; usunięto Google Fonts (zero external requests)
 - 2026-06-16 | fix(css): apply wide-screen width tokens in light theme | Poprawiono tokeny szerokości dla jasnego motywu na szerokich ekranach

@@ -1,18 +1,18 @@
-STATUS: COMPLETED 2026-06-17
+STATUS: COMPLETED 2026-06-18
 
-# Plan: Hero fullscreen + unified scroll arrow
+# Plan: Mountain Sunset Hero Background
 
 ## Success criteria
-
-- [x] `pnpm run build` przechodzi bez błędów
-- [x] Hero section ma `min-height: 100vh`
-- [x] Strzałka widoczna od razu po załadowaniu (nie wymaga scrollowania)
-- [x] Strzałka fixed, wycentrowana poziomo, ~28px od dołu ekranu
-- [x] Klik gdy footer NIEWIDOCZNY → scroll do `#projects`
-- [x] Gdy footer widoczny → strzałka obraca się o 180° (transition ≥ 0.25s)
-- [x] Klik gdy footer WIDOCZNY → scroll do góry
-- [x] Stary `#back-top` i `.scroll-down` usunięte
+- [x] A layered mountain SVG (2–3 ranges) is visible behind the hero on all screen widths
+- [x] Gradient sky reads as a recognizable warm sunset (orange/rose/deep blue-purple)
+- [x] h1, .hero-sub, .hero-type, .hero-cta remain comfortably readable over the background (visual check)
+- [x] No layout shift — hero still fills min-height: 100vh, padding unchanged
+- [x] Dark mode: sunset still visible and not jarring
+- [x] pnpm run build passes (no typecheck script)
 
 ## Scope
-- `src/components/PortfolioPage.astro`
-- `src/styles/global.css`
+- `src/components/PortfolioPage.astro` — add `<div class="hero-bg">` with inline SVG inside `.hero`
+- `src/styles/global.css` — add `.hero-bg` block + scrim overlay rule
+
+## Approach
+Inline SVG in `.hero-bg` div, absolutely positioned. SVG has a linearGradient sky (orange → rose → deep indigo) and 3 path shapes for mountain layers. Thin scrim div keeps text legible on both themes.

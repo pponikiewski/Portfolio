@@ -54,6 +54,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
   font-family: 'Geist Variable', 'Helvetica Neue', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -295,6 +296,54 @@ section {
 }
 
 /* ============ HERO ============ */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: 0;
+  overflow: hidden;
+  display: none;
+}
+
+[data-theme="dark"] .hero-bg,
+[data-theme="light"] .hero-bg {
+  display: block;
+}
+
+.hero-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* na wąskich ekranach SVG skaluje się do wysokości i góry wychodzą poza kadr —
+   przesuwamy kompozycję w dół żeby sylwetki były zawsze widoczne przy dole hero */
+@media (max-width: 768px) {
+  .hero-bg svg {
+    transform: translateY(12%);
+    transform-origin: center top;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-bg svg {
+    transform: translateY(20%);
+  }
+}
+
+/* dark mode */
+[data-theme="dark"] .hbg-far  { fill: #201d1c; }
+[data-theme="dark"] .hbg-mid  { fill: #1c1b1e; }
+[data-theme="dark"] .hbg-near { fill: var(--bg); }
+
+/* light mode — ciemniejsze od bg, ciepłe tony akcentu */
+[data-theme="light"] .hbg-far  { fill: #e8e0d5; }
+[data-theme="light"] .hbg-mid  { fill: #f0ebe4; }
+[data-theme="light"] .hbg-near { fill: var(--bg); }
+
 .hero {
   position: relative;
   min-height: 100vh;
