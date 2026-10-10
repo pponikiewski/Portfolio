@@ -2,7 +2,7 @@
 type: project
 project: portfolio
 status: active
-updated: 2026-06-18
+updated: 2026-10-10
 ---
 
 # 🧠 portfolio
@@ -31,3 +31,4 @@ updated: 2026-06-18
 - 2026-06-18 — body::after accent glow na dole strony: symetryczne domknięcie do hero, 7% opacity
 - 2026-06-18 — fix scroll jank + footer: overflow-x:clip, pointer-events:none na hero-bg, .bottom-glow przed .inner w DOM
 - 2026-06-18 — fix footer+glow desktop: site-footer usunięty ze scroll-reveal (rootMargin dead-zone bug); glow light-mode 7%→14%
+- 2026-10-10 — redesign wdrożony na pponikiewski.dev: styl dokumentu technicznego, zero JS, 4 case studies ze screenami, heatmapa GitHub, SEO/GEO (sitemap, JSON-LD, og:image, llms.txt), domena www z przekierowaniem 308

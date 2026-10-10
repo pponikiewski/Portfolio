@@ -2,42 +2,46 @@
 
 Bilingual (PL/EN) personal portfolio built with Astro, React, TypeScript and Tailwind CSS. Mono-grid minimalist design with light/dark themes.
 
-**Live routes:** `/pl` (default) · `/en`
+**Live routes:** `/` (EN, default), `/pl/`, `/projects/`, `/projects/<slug>/` (case studies, EN)
 
 ## Quick start
 
 ```bash
-npm install
-npm run dev      # localhost:4321
-npm run build    # type-check + production build → dist/
-npm run preview  # serve the build
+pnpm install
+pnpm run dev        # localhost:4321
+pnpm run typecheck  # astro check
+pnpm run test       # build + checks on dist/ (node --test)
+pnpm run build      # type-check + production build → dist/
+pnpm run preview    # serve the build
 ```
 
-Requires Node 18+.
+Requires Node 24 (tests run TypeScript directly with `node --test`). Set `GITHUB_TOKEN` (read-only, no scopes) to render the GitHub activity heatmap; without it the section is left out.
 
 ## Structure
 
 ```
 src/
   pages/
-    index.astro          redirect / → /pl
-    [lang]/index.astro   generates /pl and /en
-  components/
-    PortfolioPage.astro  full page markup
-    ThemeToggle.tsx      React island — theme switch
-  i18n/content.ts        all copy (PL + EN), typed
-  styles/global.css      design system + component styles
-public/
-  cv/                    downloadable CV (PDF)
-  images/                profile photo
+    index.astro, pl/index.astro   home pages (EN, PL)
+    projects/index.astro          all projects
+    projects/[slug].astro         case studies
+    404.astro, sitemap.xml.ts, llms.txt.ts
+  components/                     Home, ProjectCard, Activity (heatmap)
+  content/projects/*.md           one file per project: card copy + case study
+  i18n/ui.ts                      home page copy (EN + PL)
+  lib/github.ts, lib/schema.ts    build-time contributions, JSON-LD
+  styles/global.css               tokens, reset, all styles
+tests/dist.test.ts                checks the built site
+public/                           CV (PDF), og.png, favicon, robots.txt
 ```
 
 ## Editing content
 
-All text lives in `src/i18n/content.ts` under `content.pl` / `content.en`. Both languages must keep identical structure (same keys, same array lengths) — one type serves both. Edit both when changing projects, stack, or copy.
+- **Projects:** add or edit `src/content/projects/<slug>.md`. Frontmatter holds the card (tagline and summary in EN and PL, facts, stack, repo); the body is the case study. `featured: false` keeps a project off the home page, `status: in-progress` adds a label, `cover` adds a screenshot.
+- **Home page copy:** `src/i18n/ui.ts`, both languages.
 
 ## Design
 
-Mono-grid minimalist: single red accent on neutral background, sharp corners, hairline rules, JetBrains Mono labels. Light (`#faf9f6`) and dark (`#18181b`) themes; default follows the OS preference, toggle persists the choice.
+Technical-document style: IBM Plex Sans and Plex Mono, one blue accent, hairline rules, real numbers instead of decoration. Light and dark follow the OS setting. No client-side JavaScript; the only `<script>` is JSON-LD data.
 
 See `CLAUDE.md` for full conventions and architecture notes.
