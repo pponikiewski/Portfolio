@@ -123,6 +123,7 @@ test('every indexable page has a unique title, a short description and a social 
     assert.match(image, /^https:\/\/pponikiewski\.dev\//, `${file}: og:image not absolute`)
     assert.ok(existsSync(join(dist, decodeURI(new URL(image).pathname))), `${file}: og:image file missing ${image}`)
     assert.equal(metaContent(h, 'twitter:card'), 'summary_large_image', file)
+    assert.equal(metaContent(h, 'author'), 'Piotr Ponikiewski', file)
   }
 })
 
