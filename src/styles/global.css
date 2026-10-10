@@ -1,5 +1,38 @@
-@tailwind base;
-@tailwind utilities;
+/* Reset: the parts of a typical preflight this site relies on, nothing more. */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+h1,
+h2,
+h3 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+}
 
 :root {
   --bg: #fbfbfa;
@@ -61,6 +94,7 @@ main {
 
 a {
   color: inherit;
+  text-decoration: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   transition: color 150ms ease;

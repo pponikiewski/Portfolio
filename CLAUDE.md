@@ -3,9 +3,9 @@
 ## Stack
 - **Runtime:** Node.js (pnpm)
 - **Language:** TypeScript (strict mode — zero `any`)
-- **Framework:** Astro (islands architecture; minimal client JS by default)
-- **UI:** React (within the framework)
-- **Styling:** Tailwind CSS
+- **Framework:** Astro, fully static, zero client JS (tests fail on any `<script>` other than JSON-LD)
+- **UI:** Astro components (React removed in the redesign; add an island only if a feature truly needs JS)
+- **Styling:** plain CSS with tokens in `src/styles/global.css` (Tailwind removed)
 
 ## Commands
 ```bash
