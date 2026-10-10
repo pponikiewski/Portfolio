@@ -1,0 +1,76 @@
+---
+import '@fontsource-variable/ibm-plex-sans/wght.css'
+import '@fontsource/ibm-plex-mono/latin-400.css'
+import '@fontsource/ibm-plex-mono/latin-ext-400.css'
+import '@/styles/global.css'
+import plexLatin from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url'
+import { homeHref, ui, type Lang } from '@/i18n/ui'
+
+interface Props {
+  lang: Lang
+  title: string
+  description: string
+  // Only the home page exists in both languages; case studies are English only.
+  translated?: boolean
+  noindex?: boolean
+}
+
+const { lang, title, description, translated = false, noindex = false } = Astro.props
+const t = ui[lang]
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const home = homeHref(lang)
+const other: Lang = lang === 'en' ? 'pl' : 'en'
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {
+      translated && (
+        <>
+          <link rel="alternate" hreflang="en" href={new URL(homeHref('en'), Astro.site)} />
+          <link rel="alternate" hreflang="pl" href={new URL(homeHref('pl'), Astro.site)} />
+          <link rel="alternate" hreflang="x-default" href={new URL(homeHref('en'), Astro.site)} />
+        </>
+      )
+    }
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- ?v= busts browsers' separate favicon cache; bump it when the icon changes -->
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="preload" href={plexLatin} as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip" href="#main">{lang === 'en' ? 'Skip to content' : 'Przejdź do treści'}</a>
+    <header class="site-header page">
+      <a class="site-name" href={home}>Piotr Ponikiewski</a>
+      <nav aria-label={lang === 'en' ? 'Main' : 'Główna'}>
+        <a href={`${home}#work`}>{t.nav.work}</a>
+        <a href={`${home}#about`}>{t.nav.about}</a>
+        <a href={`${home}#contact`}>{t.nav.contact}</a>
+        {
+          translated && (
+            <a href={homeHref(other)} hreflang={other} lang={other}>
+              {other.toUpperCase()}
+            </a>
+          )
+        }
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer page">
+      <span>© 2026 Piotr Ponikiewski</span>
+      <span>{t.footer}</span>
+    </footer>
+  </body>
+</html>

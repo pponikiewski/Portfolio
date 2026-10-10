@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '@/layouts/Base.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
+---
+
+<Base lang="en" title="Projects, Piotr Ponikiewski" description="All projects by Piotr Ponikiewski, each with a case study.">
+  <section class="hero page" aria-labelledby="projects-title">
+    <h1 id="projects-title">Projects</h1>
+    <p class="lead">Everything I have built so far, each with a case study.</p>
+  </section>
+
+  <section class="section page" aria-labelledby="case-studies-title">
+    <h2 id="case-studies-title" class="section-label">Case studies</h2>
+    <div class="section-body projects">
+      {projects.map((project) => <ProjectCard project={project} lang="en" />)}
+    </div>
+  </section>
+</Base>

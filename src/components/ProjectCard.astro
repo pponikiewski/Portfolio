@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import { ui, type Lang } from '@/i18n/ui'
+
+interface Props {
+  project: CollectionEntry<'projects'>
+  lang: Lang
+  // The title morphs into the case study heading. Only the home page opts in, otherwise
+  // home -> /projects/ would send every title flying to its new position.
+  morph?: boolean
+}
+
+const { project, lang, morph = false } = Astro.props
+const { title, tagline, summary, facts, stack, cover, coverAlt, status } = project.data
+const href = `/projects/${project.id}/`
+---
+
+<article class:list={['project', { 'has-cover': cover }]}>
+  <div class="project-text">
+    <h3 class="project-title" style={morph ? `view-transition-name: title-${project.id}` : undefined}>
+      <a href={href}>{title}</a>
+      {status === 'in-progress' && <span class="status">{ui[lang].work.inProgress}</span>}
+    </h3>
+    <p class="project-tagline">{tagline[lang]}</p>
+    <p class="project-summary">{summary[lang]}</p>
+    <dl class="facts">
+      {
+        facts.map((fact) => (
+          <div>
+            <dt>{fact.label[lang]}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="stack">{stack.join(', ')}</p>
+    <a class="more" href={href} lang={lang === 'pl' ? 'en' : undefined}>
+      {ui[lang].work.more}<span class="visually-hidden">: {title}</span>
+    </a>
+  </div>
+  {
+    cover && (
+      <a class="project-cover" href={href} tabindex="-1" aria-hidden="true">
+        <Image src={cover} alt={coverAlt ?? title} widths={[480, 960]} sizes="(min-width: 960px) 26rem, 100vw" />
+      </a>
+    )
+  }
+</article>

@@ -1,0 +1,184 @@
+// Checks the built site in dist/, i.e. exactly what ships. Run after `astro build`.
+import { test } from 'node:test'
+import assert from 'node:assert/strict'
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
+import { join } from 'node:path'
+
+const dist = join(import.meta.dirname, '..', 'dist')
+
+const pages = {
+  en: 'index.html',
+  pl: 'pl/index.html',
+  tracker: 'projects/tracker/index.html',
+  groupManager: 'projects/group-manager/index.html',
+  netdoctor: 'projects/netdoctor/index.html',
+  budgie: 'projects/budgie/index.html',
+  notFound: '404.html',
+  projects: 'projects/index.html',
+} as const
+
+// Every markdown file in the collection is a project with a case study.
+const contentDir = join(import.meta.dirname, '..', 'src', 'content', 'projects')
+const projects = readdirSync(contentDir)
+  .filter((name) => name.endsWith('.md'))
+  .map((name) => ({
+    slug: name.replace(/\.md$/, ''),
+    featured: !/^featured:\s*false\s*$/m.test(readFileSync(join(contentDir, name), 'utf8')),
+  }))
+
+const read = (file: string): string => readFileSync(join(dist, file), 'utf8')
+
+function htmlFiles(dir: string = dist): string[] {
+  return readdirSync(dir).flatMap((name) => {
+    const path = join(dir, name)
+    if (statSync(path).isDirectory()) return htmlFiles(path)
+    return name.endsWith('.html') ? [path] : []
+  })
+}
+
+// Visible text only: drop comments, tags and the <head>.
+const visibleText = (html: string): string =>
+  html
+    .replace(/<head>[\s\S]*?<\/head>/, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<[^>]+>/g, ' ')
+
+const attr = (tag: string, name: string): string | undefined =>
+  new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1]
+
+test('every project has a case study and is listed on /projects/; home shows only featured ones', () => {
+  const index = read(pages.projects)
+  for (const { slug, featured } of projects) {
+    assert.ok(existsSync(join(dist, 'projects', slug, 'index.html')), `${slug}: no case study`)
+    assert.match(index, new RegExp(`href="/projects/${slug}/"`), `${slug}: missing on /projects/`)
+    for (const file of [pages.en, pages.pl]) {
+      assert.equal(read(file).includes(`href="/projects/${slug}/"`), featured, `${file}: ${slug}`)
+    }
+  }
+  const hasMore = projects.some((p) => !p.featured)
+  for (const file of [pages.en, pages.pl]) {
+    assert.equal(read(file).includes('href="/projects/"'), hasMore, `${file}: All projects link`)
+  }
+  assert.equal(read(pages.tracker).includes('class="back" href="/projects/"'), hasMore)
+})
+
+test('a project marked in-progress says so on its card and case study', () => {
+  for (const { slug } of projects) {
+    const source = readFileSync(join(contentDir, `${slug}.md`), 'utf8')
+    const inProgress = /^status:\s*in-progress\s*$/m.test(source)
+    const caseStudy = read(`projects/${slug}/index.html`)
+    assert.equal(caseStudy.includes('class="status">In progress<'), inProgress, slug)
+  }
+  assert.match(read(pages.projects), /Budgie<\/a>\s*<span class="status">In progress<\/span>/)
+})
+
+test('only home cards morph into case studies, so /projects/ does not animate titles', () => {
+  assert.match(read(pages.en), /view-transition-name: title-tracker/)
+  assert.doesNotMatch(read(pages.projects), /view-transition-name/)
+})
+
+test('404 page is not indexed and leads back to both home pages', () => {
+  const html = read(pages.notFound)
+  assert.match(html, /<meta name="robots" content="noindex">/)
+  assert.doesNotMatch(html, /rel="canonical"/)
+  assert.match(html, /href="\/"/)
+  assert.match(html, /href="\/pl\/"/)
+})
+
+test('all pages are built', () => {
+  for (const file of Object.values(pages)) {
+    assert.ok(existsSync(join(dist, file)), `missing ${file}`)
+  }
+})
+
+test('no page ships a <script>', () => {
+  for (const file of htmlFiles()) {
+    assert.doesNotMatch(readFileSync(file, 'utf8'), /<script/i, file)
+  }
+})
+
+test('no em dash or en dash anywhere', () => {
+  for (const file of htmlFiles()) {
+    assert.doesNotMatch(readFileSync(file, 'utf8'), /[–—]|&mdash;|&ndash;/, file)
+  }
+})
+
+test('the group project stays neutral: no domain words, no production demo link', () => {
+  const repoUrl = 'https://github.com/pponikiewski/roza-rozancowa'
+  for (const file of htmlFiles()) {
+    const html = readFileSync(file, 'utf8').replaceAll(repoUrl, '')
+    assert.doesNotMatch(html, /róż|roza|różan|rozanc|różaniec|vercel\.app/i, file)
+  }
+})
+
+test('CV link matches the page language and the files exist', () => {
+  assert.match(read(pages.en), /href="\/cv\/Piotr_Ponikiewski_cv_en\.pdf"/)
+  assert.match(read(pages.pl), /href="\/cv\/Piotr_Ponikiewski_cv_pl\.pdf"/)
+  assert.doesNotMatch(read(pages.en), /cv_pl\.pdf/)
+  assert.doesNotMatch(read(pages.pl), /cv_en\.pdf/)
+  for (const lang of ['en', 'pl']) {
+    assert.ok(existsSync(join(dist, 'cv', `Piotr_Ponikiewski_cv_${lang}.pdf`)), `missing ${lang} CV`)
+  }
+})
+
+test('every internal href and src resolves to a built file', () => {
+  for (const file of htmlFiles()) {
+    const html = readFileSync(file, 'utf8')
+    for (const [, url] of html.matchAll(/\s(?:href|src)="(\/[^"]*)"/g)) {
+      const path = decodeURI(url.split('#')[0].split('?')[0])
+      const target = path.endsWith('/') ? join(dist, path, 'index.html') : join(dist, path)
+      assert.ok(existsSync(target), `${file} links to missing ${url}`)
+    }
+  }
+})
+
+test('every <img> has alt, width and height', () => {
+  for (const file of htmlFiles()) {
+    for (const [tag] of readFileSync(file, 'utf8').matchAll(/<img\b[^>]*>/g)) {
+      assert.ok(attr(tag, 'alt'), `${file}: img without alt: ${tag}`)
+      assert.ok(attr(tag, 'width') && attr(tag, 'height'), `${file}: img without size: ${tag}`)
+    }
+  }
+})
+
+test('html lang is set and the home pages point at each other', () => {
+  const en = read(pages.en)
+  const pl = read(pages.pl)
+  assert.match(en, /<html lang="en"/)
+  assert.match(pl, /<html lang="pl"/)
+  assert.match(read(pages.tracker), /<html lang="en"/)
+  for (const html of [en, pl]) {
+    assert.match(html, /rel="alternate" hreflang="en" href="https:\/\/pponikiewski\.dev\/"/)
+    assert.match(html, /rel="alternate" hreflang="pl" href="https:\/\/pponikiewski\.dev\/pl\/"/)
+  }
+})
+
+test('hero says full-stack developer, the level is stated in About', () => {
+  for (const file of [pages.en, pages.pl]) {
+    const html = read(file)
+    const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? ''
+    assert.match(h1, /full-stack developer/i, file)
+    assert.doesNotMatch(h1, /junior/i, file)
+    const about = /<section id="about"[\s\S]*?<\/section>/.exec(html)?.[0] ?? ''
+    assert.match(visibleText(about), /junior/i, file)
+  }
+})
+
+test('activity heatmap is static and labelled; only built when a token is available', () => {
+  for (const file of [pages.en, pages.pl]) {
+    const section = /<section id="activity"[\s\S]*?<\/section>/.exec(read(file))?.[0]
+    if (!process.env.GITHUB_TOKEN) {
+      assert.equal(section, undefined, `${file}: heatmap rendered without a token`)
+      continue
+    }
+    assert.ok(section, `${file}: heatmap missing although GITHUB_TOKEN is set`)
+    assert.match(section, /<svg[^>]*role="img"[^>]*aria-labelledby="activity-summary"/)
+    assert.match(section, /<p id="activity-summary">[\d,\s]+ (contributions?|kontrybucj[aei]) /)
+    assert.ok((section.match(/<rect /g) ?? []).length >= 365, `${file}: fewer than 365 days`)
+  }
+})
+
+test('/en redirects to /', () => {
+  const html = read('en/index.html')
+  assert.match(html, /http-equiv="refresh" content="0;url=\/"/)
+})

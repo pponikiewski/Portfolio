@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "tests/dist.test.ts"
+        ],
+        "createdAt": "2026-10-09T21:45:23.874Z",
+        "reason": "Claude: regex literals in a dist test that checks img attributes, not markup"
+      }
+    ]
+  }
+}

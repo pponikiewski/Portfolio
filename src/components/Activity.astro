@@ -1,0 +1,75 @@
+---
+import type { Contributions } from '@/lib/github'
+import { contact, type Lang } from '@/i18n/ui'
+
+interface Props {
+  data: Contributions
+  lang: Lang
+}
+
+const { data, lang } = Astro.props
+
+const CELL = 10
+const STEP = 13
+const TOP = 18
+const width = data.weeks.length * STEP - (STEP - CELL)
+const height = TOP + 7 * STEP - (STEP - CELL)
+
+const number = new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'pl-PL')
+const plural = new Intl.PluralRules(lang)
+const nouns = {
+  en: { one: 'contribution', other: 'contributions' },
+  pl: { one: 'kontrybucja', few: 'kontrybucje', many: 'kontrybucji', other: 'kontrybucji' },
+} as const
+const noun = (n: number): string => {
+  const forms: Partial<Record<Intl.LDMLPluralRule, string>> = nouns[lang]
+  return forms[plural.select(n)] ?? forms.other ?? ''
+}
+
+const dayFormat = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+const monthFormat = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' })
+
+const summary =
+  lang === 'en'
+    ? `${number.format(data.total)} ${noun(data.total)} on GitHub in the last year`
+    : `${number.format(data.total)} ${noun(data.total)} na GitHubie w ostatnim roku`
+
+// A label wherever a week starts in a new month. The first and the last two weeks get none,
+// so labels neither overlap nor run past the right edge.
+const months = data.weeks.flatMap((week, i) => {
+  const first = week[0]
+  const prev = data.weeks[i - 1]?.[0]
+  if (!first || !prev || i > data.weeks.length - 3 || first.date.slice(5, 7) === prev.date.slice(5, 7)) return []
+  return [{ x: i * STEP, label: monthFormat.format(new Date(first.date)) }]
+})
+---
+
+<p id="activity-summary">{summary}</p>
+<div class="heatmap">
+  <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} role="img" aria-labelledby="activity-summary">
+    {
+      months.map((m) => (
+        <text x={m.x} y="10" class="heatmap-month">
+          {m.label}
+        </text>
+      ))
+    }
+    {
+      data.weeks.map((week, i) =>
+        week.map((day) => (
+          <rect
+            x={i * STEP}
+            y={TOP + new Date(day.date).getUTCDay() * STEP}
+            width={CELL}
+            height={CELL}
+            rx="2"
+            class={`l${day.level}`}
+          >
+            <title>{`${dayFormat.format(new Date(day.date))}: ${day.count} ${noun(day.count)}`}</title>
+          </rect>
+        )),
+      )
+    }
+  </svg>
+</div>
+<a class="heatmap-link" href={contact.github}>github.com/pponikiewski</a>

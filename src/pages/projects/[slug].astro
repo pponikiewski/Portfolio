@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets'
+import { getCollection, render, type CollectionEntry } from 'astro:content'
+import Base from '@/layouts/Base.astro'
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, next: projects[(i + 1) % projects.length] },
+  }))
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>
+  next: CollectionEntry<'projects'>
+}
+
+const { project, next } = Astro.props
+const { title, tagline, facts, stack, repo, releases, cover, coverAlt, status } = project.data
+const { Content } = await render(project)
+const all = await getCollection('projects')
+const backHref = all.some((p) => !p.data.featured) ? '/projects/' : '/#work'
+---
+
+<Base lang="en" title={`${title}, case study by Piotr Ponikiewski`} description={project.data.summary.en}>
+  <article class="case page">
+    <header class="case-header">
+      <a class="back" href={backHref}>All projects</a>
+      <h1 style={`view-transition-name: title-${project.id}`}>
+        {title}
+        {status === 'in-progress' && <span class="status">In progress</span>}
+      </h1>
+      <p class="lead">{tagline.en}</p>
+      <dl class="facts">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt>{fact.label.en}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="stack">{stack.join(', ')}</p>
+      <p class="actions">
+        <a class="button" href={repo}>Source on GitHub</a>
+        {releases && <a class="button ghost" href={releases}>Releases</a>}
+      </p>
+    </header>
+
+    {
+      cover && (
+        <figure class="case-cover">
+          <Image
+            src={cover}
+            alt={coverAlt ?? title}
+            widths={[720, 1440]}
+            sizes="(min-width: 1100px) 68rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </figure>
+      )
+    }
+
+    <div class="prose case-body">
+      <Content />
+    </div>
+
+    <nav class="next" aria-label="Next project">
+      <span>Next project</span>
+      <a href={`/projects/${next.id}/`}>{next.data.title}</a>
+    </nav>
+  </article>
+</Base>
