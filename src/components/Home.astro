@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Base from '@/layouts/Base.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
@@ -7,6 +7,7 @@ import Activity from '@/components/Activity.astro'
 import photo from '@/assets/photo.png'
 import { contact, cvHref, ui, type Lang } from '@/i18n/ui'
 import { getContributions } from '@/lib/github'
+import { homeSchema, SITE } from '@/lib/schema'
 
 interface Props {
   lang: Lang
@@ -19,15 +20,24 @@ const projects = allProjects.filter((project) => project.data.featured)
 // The link to /projects/ only earns its place once there is more there than on this page.
 const hasMoreProjects = allProjects.length > projects.length
 const contributions = await getContributions()
+const portrait = await getImage({ src: photo, width: 284, format: 'jpeg' })
+const structuredData = homeSchema(lang, new URL(portrait.src, SITE).href, t.meta.description)
 ---
 
-<Base lang={lang} title={t.meta.title} description={t.meta.description} translated>
+<Base
+  lang={lang}
+  title={t.meta.title}
+  description={t.meta.description}
+  translated
+  ogType="profile"
+  structuredData={structuredData}
+>
   <section class="hero page" aria-labelledby="hero-title">
     <h1 id="hero-title">{t.hero.title}</h1>
     <p class="lead">{t.hero.lead}</p>
     <p class="actions">
       <a class="button" href={cvHref(lang)} download>{t.hero.cv}</a>
-      <a class="button ghost" href={contact.github}>GitHub</a>
+      <a class="button ghost" href={contact.github} rel="me">GitHub</a>
     </p>
   </section>
 
@@ -80,7 +90,7 @@ const contributions = await getContributions()
         </div>
         <div>
           <dt>GitHub</dt>
-          <dd><a href={contact.github}>github.com/pponikiewski</a></dd>
+          <dd><a href={contact.github} rel="me">github.com/pponikiewski</a></dd>
         </div>
       </dl>
     </div>

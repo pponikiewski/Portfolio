@@ -7,6 +7,7 @@ tagline:
 summary:
   en: A Tauri app with a local SQLite database that syncs with Postgres in the background. Teams share workspaces with roles, invite links and per-workspace access rules.
   pl: Aplikacja w Tauri z lokalną bazą SQLite, która w tle synchronizuje się z Postgresem. Zespoły dzielą workspace'y z rolami, zaproszeniami i regułami dostępu per workspace.
+description: Case study of Tracker, an offline-first desktop time tracker in Tauri and React that syncs SQLite with Postgres and resolves conflicts.
 facts:
   - value: '7'
     label:

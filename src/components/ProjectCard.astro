@@ -18,10 +18,12 @@ const href = `/projects/${project.id}/`
 
 <article class:list={['project', { 'has-cover': cover }]}>
   <div class="project-text">
-    <h3 class="project-title" style={morph ? `view-transition-name: title-${project.id}` : undefined}>
-      <a href={href}>{title}</a>
+    <div class="title-row">
+      <h3 class="project-title" style={morph ? `view-transition-name: title-${project.id}` : undefined}>
+        <a href={href}>{title}</a>
+      </h3>
       {status === 'in-progress' && <span class="status">{ui[lang].work.inProgress}</span>}
-    </h3>
+    </div>
     <p class="project-tagline">{tagline[lang]}</p>
     <p class="project-summary">{summary[lang]}</p>
     <dl class="facts">

@@ -65,11 +65,12 @@ const months = data.weeks.flatMap((week, i) => {
             rx="2"
             class={`l${day.level}`}
           >
-            <title>{`${dayFormat.format(new Date(day.date))}: ${day.count} ${noun(day.count)}`}</title>
+            {/* Hover labels only on active days: empty ones would be ~280 lines of noise for crawlers */}
+            {day.count > 0 && <title>{`${dayFormat.format(new Date(day.date))}: ${day.count} ${noun(day.count)}`}</title>}
           </rect>
         )),
       )
     }
   </svg>
 </div>
-<a class="heatmap-link" href={contact.github}>github.com/pponikiewski</a>
+<a class="heatmap-link" href={contact.github} rel="me">github.com/pponikiewski</a>

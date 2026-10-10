@@ -6,7 +6,7 @@ import ProjectCard from '@/components/ProjectCard.astro'
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
 ---
 
-<Base lang="en" title="Projects, Piotr Ponikiewski" description="All projects by Piotr Ponikiewski, each with a case study.">
+<Base lang="en" title="Projects, Piotr Ponikiewski" description="Case studies by Piotr Ponikiewski: an offline-first time tracker, a group management PWA, a Rust network diagnostics tool and a budget app.">
   <section class="hero page" aria-labelledby="projects-title">
     <h1 id="projects-title">Projects</h1>
     <p class="lead">Everything I have built so far, each with a case study.</p>

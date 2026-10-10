@@ -16,6 +16,8 @@ const projects = defineCollection({
       // Card copy is shown on both language versions of the home page.
       tagline: localized,
       summary: localized,
+      // Meta description for the case study when the summary runs past what search results show.
+      description: z.string().max(160).optional(),
       facts: z.array(z.object({ value: z.string(), label: localized })).max(3),
       stack: z.array(z.string()),
       repo: z.string().url(),

@@ -69,7 +69,13 @@ test('a project marked in-progress says so on its card and case study', () => {
     const caseStudy = read(`projects/${slug}/index.html`)
     assert.equal(caseStudy.includes('class="status">In progress<'), inProgress, slug)
   }
-  assert.match(read(pages.projects), /Budgie<\/a>\s*<span class="status">In progress<\/span>/)
+  assert.match(read(pages.projects), /Budgie<\/a>\s*<\/h3>\s*<span class="status">In progress<\/span>/)
+  // The label sits next to the heading, never inside it, so the heading text stays the project name.
+  for (const file of htmlFiles()) {
+    for (const [, heading] of readFileSync(file, 'utf8').matchAll(/<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>/g)) {
+      assert.doesNotMatch(heading, /In progress|W trakcie/, file)
+    }
+  }
 })
 
 test('only home cards morph into case studies, so /projects/ does not animate titles', () => {
@@ -91,21 +97,76 @@ test('all pages are built', () => {
   }
 })
 
-test('no page ships a <script>', () => {
+test('no page ships JavaScript (JSON-LD data blocks are the only allowed <script>)', () => {
   for (const file of htmlFiles()) {
-    assert.doesNotMatch(readFileSync(file, 'utf8'), /<script/i, file)
+    for (const [tag] of readFileSync(file, 'utf8').matchAll(/<script\b[^>]*>/gi)) {
+      assert.match(tag, /type="application\/ld\+json"/, `${file}: ${tag}`)
+    }
   }
 })
 
+const indexable = (Object.values(pages) as string[]).filter((f) => f !== pages.notFound)
+const head = (file: string): string => read(file).split('<body')[0]
+const metaContent = (html: string, key: string): string | undefined =>
+  new RegExp(`<meta (?:name|property)="${key.replace(/[.:]/g, '\\$&')}" content="([^"]*)"`).exec(html)?.[1]
+
+test('every indexable page has a unique title, a short description and a social image that exists', () => {
+  const titles = new Set<string>()
+  for (const file of indexable) {
+    const h = head(file)
+    const title = /<title>([^<]*)<\/title>/.exec(h)?.[1] ?? ''
+    assert.ok(title && !titles.has(title), `${file}: missing or duplicate title "${title}"`)
+    titles.add(title)
+    const description = metaContent(h, 'description') ?? ''
+    assert.ok(description.length >= 50 && description.length <= 160, `${file}: description length ${description.length}`)
+    const image = metaContent(h, 'og:image') ?? ''
+    assert.match(image, /^https:\/\/pponikiewski\.dev\//, `${file}: og:image not absolute`)
+    assert.ok(existsSync(join(dist, decodeURI(new URL(image).pathname))), `${file}: og:image file missing ${image}`)
+    assert.equal(metaContent(h, 'twitter:card'), 'summary_large_image', file)
+  }
+})
+
+test('structured data: a Person on the home pages, an article with that author on case studies', () => {
+  const graph = (file: string): Array<Record<string, unknown>> => {
+    const json = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(read(file))?.[1]
+    assert.ok(json, `${file}: no JSON-LD`)
+    return (JSON.parse(json) as { '@graph': Array<Record<string, unknown>> })['@graph']
+  }
+  for (const file of [pages.en, pages.pl]) {
+    const person = graph(file).find((n) => n['@type'] === 'Person')
+    assert.equal(person?.name, 'Piotr Ponikiewski', file)
+    assert.deepEqual(person?.sameAs, ['https://github.com/pponikiewski'], file)
+  }
+  for (const { slug } of projects) {
+    const article = graph(`projects/${slug}/index.html`).find((n) => n['@type'] === 'TechArticle')
+    assert.deepEqual(article?.author, { '@id': 'https://pponikiewski.dev/#person' }, slug)
+  }
+})
+
+test('robots.txt points at a sitemap that lists every indexable page', () => {
+  assert.match(readFileSync(join(dist, 'robots.txt'), 'utf8'), /^Sitemap: https:\/\/pponikiewski\.dev\/sitemap\.xml$/m)
+  const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
+  for (const file of indexable) {
+    const canonical = /<link rel="canonical" href="([^"]+)"/.exec(read(file))?.[1]
+    assert.ok(canonical && sitemap.includes(`<loc>${canonical}</loc>`), `${file}: ${canonical} not in sitemap`)
+  }
+})
+
+test('llms.txt summarises the site and links every case study', () => {
+  const llms = readFileSync(join(dist, 'llms.txt'), 'utf8')
+  assert.match(llms, /^# Piotr Ponikiewski$/m)
+  for (const { slug } of projects) assert.ok(llms.includes(`https://pponikiewski.dev/projects/${slug}/`), slug)
+})
+
 test('no em dash or en dash anywhere', () => {
-  for (const file of htmlFiles()) {
+  for (const file of [...htmlFiles(), join(dist, 'llms.txt')]) {
     assert.doesNotMatch(readFileSync(file, 'utf8'), /[–—]|&mdash;|&ndash;/, file)
   }
 })
 
 test('the group project stays neutral: no domain words, no production demo link', () => {
   const repoUrl = 'https://github.com/pponikiewski/roza-rozancowa'
-  for (const file of htmlFiles()) {
+  for (const file of [...htmlFiles(), join(dist, 'llms.txt'), join(dist, 'sitemap.xml')]) {
     const html = readFileSync(file, 'utf8').replaceAll(repoUrl, '')
     assert.doesNotMatch(html, /róż|roza|różan|rozanc|różaniec|vercel\.app/i, file)
   }
@@ -175,6 +236,7 @@ test('activity heatmap is static and labelled; only built when a token is availa
     assert.match(section, /<svg[^>]*role="img"[^>]*aria-labelledby="activity-summary"/)
     assert.match(section, /<p id="activity-summary">[\d,\s]+ (contributions?|kontrybucj[aei]) /)
     assert.ok((section.match(/<rect /g) ?? []).length >= 365, `${file}: fewer than 365 days`)
+    assert.doesNotMatch(section, /: 0 (contributions|kontrybucji)</, `${file}: empty days carry labels`)
   }
 })
 

@@ -3,9 +3,9 @@ export type Lang = 'en' | 'pl'
 export const ui = {
   en: {
     meta: {
-      title: 'Piotr Ponikiewski, full-stack developer',
+      title: 'Piotr Ponikiewski, full-stack developer in Bielsko-Biała',
       description:
-        'Full-stack developer working in TypeScript, React and PostgreSQL. Web and desktop apps, built end to end.',
+        'Full-stack developer in Bielsko-Biała, Poland, working in TypeScript, React and PostgreSQL. Case studies of web and desktop apps built end to end.',
     },
     nav: { work: 'Work', about: 'About', contact: 'Contact' },
     hero: {
@@ -32,9 +32,9 @@ export const ui = {
   },
   pl: {
     meta: {
-      title: 'Piotr Ponikiewski, full-stack developer',
+      title: 'Piotr Ponikiewski, full-stack developer, Bielsko-Biała',
       description:
-        'Full-stack developer pracujący w TypeScript, React i PostgreSQL. Aplikacje webowe i desktopowe od początku do końca.',
+        'Full-stack developer z Bielska-Białej. TypeScript, React i PostgreSQL. Case studies aplikacji webowych i desktopowych zrobionych od początku do końca.',
     },
     nav: { work: 'Projekty', about: 'O mnie', contact: 'Kontakt' },
     hero: {

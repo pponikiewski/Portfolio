@@ -1,0 +1,5 @@
+# Everything is public, including for AI crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://pponikiewski.dev/sitemap.xml

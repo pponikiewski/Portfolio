@@ -1,7 +1,8 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import Base from '@/layouts/Base.astro'
+import { caseStudySchema, SITE } from '@/lib/schema'
 
 export async function getStaticPaths() {
   const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
@@ -21,16 +22,28 @@ const { title, tagline, facts, stack, repo, releases, cover, coverAlt, status } 
 const { Content } = await render(project)
 const all = await getCollection('projects')
 const backHref = all.some((p) => !p.data.featured) ? '/projects/' : '/#work'
+const description = project.data.description ?? project.data.summary.en
+const url = new URL(`/projects/${project.id}/`, SITE).href
+// Social preview: the cover at a size link previews use; projects without one fall back to the site card.
+const ogImage = cover ? (await getImage({ src: cover, width: 1200, format: 'jpeg' })).src : '/og.png'
+const structuredData = caseStudySchema(project, url, description, new URL(ogImage, SITE).href)
 ---
 
-<Base lang="en" title={`${title}, case study by Piotr Ponikiewski`} description={project.data.summary.en}>
+<Base
+  lang="en"
+  title={`${title}, case study by Piotr Ponikiewski`}
+  description={description}
+  ogType="article"
+  image={ogImage}
+  structuredData={structuredData}
+>
   <article class="case page">
     <header class="case-header">
       <a class="back" href={backHref}>All projects</a>
-      <h1 style={`view-transition-name: title-${project.id}`}>
-        {title}
+      <div class="title-row">
+        <h1 style={`view-transition-name: title-${project.id}`}>{title}</h1>
         {status === 'in-progress' && <span class="status">In progress</span>}
-      </h1>
+      </div>
       <p class="lead">{tagline.en}</p>
       <dl class="facts">
         {

@@ -13,13 +13,31 @@ interface Props {
   // Only the home page exists in both languages; case studies are English only.
   translated?: boolean
   noindex?: boolean
+  ogType?: 'website' | 'article' | 'profile'
+  // Absolute or root-relative URL of the social preview image; defaults to the site card.
+  image?: string
+  // schema.org JSON-LD for this page.
+  structuredData?: Record<string, unknown>
 }
 
-const { lang, title, description, translated = false, noindex = false } = Astro.props
+const {
+  lang,
+  title,
+  description,
+  translated = false,
+  noindex = false,
+  ogType = 'website',
+  image = '/og.png',
+  structuredData,
+} = Astro.props
 const t = ui[lang]
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const home = homeHref(lang)
 const other: Lang = lang === 'en' ? 'pl' : 'en'
+const imageUrl = new URL(image, Astro.site)
+const locale = { en: 'en_US', pl: 'pl_PL' } as const
+// JSON in a script element: escape "<" so no string inside can close the tag.
+const jsonLd = structuredData ? JSON.stringify(structuredData).replace(/</g, '\\u003c') : undefined
 ---
 
 <!doctype html>
@@ -39,14 +57,21 @@ const other: Lang = lang === 'en' ? 'pl' : 'en'
         </>
       )
     }
+    <meta property="og:site_name" content="Piotr Ponikiewski" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={locale[lang]} />
+    {translated && <meta property="og:locale:alternate" content={locale[other]} />}
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="color-scheme" content="light dark" />
     <!-- ?v= busts browsers' separate favicon cache; bump it when the icon changes -->
     <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href={plexLatin} as="font" type="font/woff2" crossorigin />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body>
     <a class="skip" href="#main">{lang === 'en' ? 'Skip to content' : 'Przejdź do treści'}</a>

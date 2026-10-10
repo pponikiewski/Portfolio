@@ -7,6 +7,7 @@ tagline:
 summary:
   en: A network diagnostics tool for Windows, written in Rust. It measures the router and the internet in parallel, records every outage with its context and writes a PDF report for the ISP.
   pl: Narzędzie do diagnostyki sieci w Windows, napisane w Rust. Mierzy równolegle router i internet, zapisuje każdą awarię z kontekstem i generuje raport PDF dla dostawcy.
+description: Case study of NetDoctor, a Rust tool for Windows that shows where the connection breaks and writes a PDF report for the ISP.
 facts:
   - value: '422'
     label:
