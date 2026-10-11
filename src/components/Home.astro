@@ -85,12 +85,12 @@ const structuredData = homeSchema(lang, new URL(portrait.src, SITE).href, t.meta
       <a class="email" href={`mailto:${contact.email}`}>{contact.email}</a>
       <dl class="contact-list">
         <div>
-          <dt>{t.contact.phone}</dt>
-          <dd><a href={`tel:${contact.phone.replaceAll(' ', '')}`}>{contact.phone}</a></dd>
-        </div>
-        <div>
           <dt>GitHub</dt>
           <dd><a href={contact.github} rel="me">github.com/pponikiewski</a></dd>
+        </div>
+        <div>
+          <dt>LinkedIn</dt>
+          <dd><a href={contact.linkedin} rel="me">Piotr Ponikiewski</a></dd>
         </div>
       </dl>
     </div>

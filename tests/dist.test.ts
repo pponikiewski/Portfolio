@@ -136,7 +136,11 @@ test('structured data: a Person on the home pages, an article with that author o
   for (const file of [pages.en, pages.pl]) {
     const person = graph(file).find((n) => n['@type'] === 'Person')
     assert.equal(person?.name, 'Piotr Ponikiewski', file)
-    assert.deepEqual(person?.sameAs, ['https://github.com/pponikiewski'], file)
+    assert.deepEqual(
+      person?.sameAs,
+      ['https://github.com/pponikiewski', 'https://www.linkedin.com/in/piotr-ponikiewski-580679232/'],
+      file,
+    )
   }
   for (const { slug } of projects) {
     const article = graph(`projects/${slug}/index.html`).find((n) => n['@type'] === 'TechArticle')

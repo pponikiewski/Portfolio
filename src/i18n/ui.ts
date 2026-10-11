@@ -26,7 +26,6 @@ export const ui = {
     contact: {
       heading: 'Contact',
       lead: 'Open to full-stack and frontend roles. The fastest way to reach me is email.',
-      phone: 'Phone',
     },
     footer: 'This page ships no JavaScript.',
   },
@@ -60,7 +59,6 @@ export const ui = {
     contact: {
       heading: 'Kontakt',
       lead: 'Szukam pracy jako full-stack lub frontend developer. Najszybciej odpowiem na maila.',
-      phone: 'Telefon',
     },
     footer: 'Ta strona nie zawiera JavaScriptu.',
   },
@@ -68,7 +66,7 @@ export const ui = {
 
 export const contact = {
   email: 'ponikiewski.piotr@gmail.com',
-  phone: '+48 608 346 682',
+  linkedin: 'https://www.linkedin.com/in/piotr-ponikiewski-580679232/',
   github: 'https://github.com/pponikiewski',
 } as const
 

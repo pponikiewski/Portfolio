@@ -16,6 +16,7 @@ export const GET: APIRoute = async () => {
     '',
     `- Website: ${SITE}/ (Polish version: ${SITE}/pl/)`,
     `- GitHub: ${contact.github}`,
+    `- LinkedIn: ${contact.linkedin}`,
     `- Email: ${contact.email}`,
     `- CV (PDF): ${SITE}${cvHref('en')}`,
     '',

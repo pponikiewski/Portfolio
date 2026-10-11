@@ -19,7 +19,7 @@ const person = (photoUrl: string) => ({
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Wyższa Szkoła Informatyki i Zarządzania w Bielsku-Białej (WSIZ)' },
   knowsAbout: ['TypeScript', 'React', 'PostgreSQL', 'Supabase', 'Row Level Security', 'Tauri', 'Rust', 'SQLite', 'Offline-first sync'],
   knowsLanguage: ['pl', 'en', 'de'],
-  sameAs: [contact.github],
+  sameAs: [contact.github, contact.linkedin],
 })
 
 export function homeSchema(lang: Lang, photoUrl: string, description: string) {
@@ -68,7 +68,7 @@ export function caseStudySchema(project: CollectionEntry<'projects'>, url: strin
         programmingLanguage: stack,
         author: { '@id': PERSON_ID },
       },
-      { '@type': 'Person', '@id': PERSON_ID, name: 'Piotr Ponikiewski', url: `${SITE}/`, sameAs: [contact.github] },
+      { '@type': 'Person', '@id': PERSON_ID, name: 'Piotr Ponikiewski', url: `${SITE}/`, sameAs: [contact.github, contact.linkedin] },
     ],
   }
 }
