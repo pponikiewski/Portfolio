@@ -20,5 +20,6 @@ jobs:
             echo "::notice::VERCEL_DEPLOY_HOOK is not set, skipping"
             exit 0
           fi
-          curl -fsS -X POST "$HOOK" > /dev/null
+          # --retry covers 429/5xx and honours Retry-After from Vercel
+          curl -fsS --retry 4 --retry-delay 30 --retry-max-time 300 -X POST "$HOOK" > /dev/null
           echo "Deploy triggered"
