@@ -219,14 +219,12 @@ test('html lang is set and the home pages point at each other', () => {
   }
 })
 
-test('hero says full-stack developer, the level is stated in About', () => {
+test('hero says full-stack developer, no "junior" label anywhere', () => {
   for (const file of [pages.en, pages.pl]) {
     const html = read(file)
     const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? ''
     assert.match(h1, /full-stack developer/i, file)
-    assert.doesNotMatch(h1, /junior/i, file)
-    const about = /<section id="about"[\s\S]*?<\/section>/.exec(html)?.[0] ?? ''
-    assert.match(visibleText(about), /junior/i, file)
+    assert.doesNotMatch(html, /junior/i, file)
   }
 })
 

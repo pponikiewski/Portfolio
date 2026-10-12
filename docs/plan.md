@@ -29,7 +29,7 @@ Kierunek z brainstormingu: portfolio full-stack developera dla tech leadów (rek
   - [x] każdy wewnętrzny `href`/`src` wskazuje istniejący plik w `dist/`
   - [x] każdy `<img>` ma niepusty `alt`, `width`, `height`
   - [x] `<html lang>` = en/pl, `hreflang` w obie strony
-  - [x] `<h1>` na głównej zawiera "Full-stack developer", bez "Junior"; sekcja about zawiera "Junior"
+  - [x] `<h1>` na głównej zawiera "Full-stack developer", słowo "Junior" nie pada nigdzie na stronie
 - [x] Lighthouse mobile na `/`, `/pl/` i `/projects/tracker/`: Performance 99-100, Accessibility 100, SEO 100. Best Practices 82 lokalnie wyłącznie przez `is-on-https` (preview po HTTP); do potwierdzenia na produkcji (HTTPS). Pomiar z zablokowanym AdGuardem, który wstrzykuje 1,8 MB skryptów lokalnie.
 - [x] `/en` przekierowuje na `/` (vercel.json + Astro redirects)
 - [x] Zrzuty `/`, `/pl/`, jednego case study: jasny + ciemny, 375 i 1440 px, przejrzane; brak poziomego scrolla

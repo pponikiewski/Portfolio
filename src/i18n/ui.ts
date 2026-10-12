@@ -19,7 +19,7 @@ export const ui = {
       heading: 'About',
       photoAlt: 'Portrait of Piotr Ponikiewski',
       body: [
-        'I am a junior developer looking for my first job in a team, as a full-stack or frontend developer. In 2026 I finished an engineering degree in computer science, specialising in web development, at WSIZ in Bielsko-Biała. My thesis is the group management system above, and it runs in production.',
+        'I am looking for my first job in a team, as a full-stack or frontend developer. In 2026 I finished an engineering degree in computer science, specialising in web development, at WSIZ in Bielsko-Biała. My thesis is the group management system above, and it runs in production.',
         'Most of my work is in TypeScript, React and PostgreSQL on Supabase. Outside the web I write Rust. I work with AI tools such as Claude Code. I speak Polish natively and English at C1.',
       ],
     },
@@ -52,7 +52,7 @@ export const ui = {
       heading: 'O mnie',
       photoAlt: 'Zdjęcie Piotra Ponikiewskiego',
       body: [
-        'Jestem junior developerem i szukam pierwszej pracy w zespole, jako full-stack lub frontend developer. W 2026 roku skończyłem studia inżynierskie z informatyki, specjalizacja web development, na WSIZ w Bielsku-Białej. Moja praca inżynierska to system zarządzania grupami opisany wyżej i działa produkcyjnie.',
+        'Szukam pierwszej pracy w zespole, jako full-stack lub frontend developer. W 2026 roku skończyłem studia inżynierskie z informatyki, specjalizacja web development, na WSIZ w Bielsku-Białej. Moja praca inżynierska to system zarządzania grupami opisany wyżej i działa produkcyjnie.',
         'Najczęściej pracuję w TypeScript, React i PostgreSQL na Supabase. Poza webem piszę w Rust. Pracuję z narzędziami AI, takimi jak Claude Code. Angielski na poziomie C1.',
       ],
     },
